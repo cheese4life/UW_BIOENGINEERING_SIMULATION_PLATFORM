@@ -1,0 +1,237 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lua_alerts.html">lua_alerts</a></li>
+  <li><a href="../modules/lua_config.html">lua_config</a></li>
+  <li><a href="../modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><a href="../modules/lua_logger.html">lua_logger</a></li>
+  <li><strong>lua_clock</strong></li>
+</ul>
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="../globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="../devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="../devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><a href="../devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>lua_clock</code></h1>
+<p>Provides access to a monotonically incrementing time source not affected by
+ changes to the wall clock due to daylight saving transitions,
+ NTP time source adjustments, or user changes to the time or timezone.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#now">now</a></td>
+    <td class="summary">Return a microsecond timestamp representing the current time.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#now_str">now_str</a></td>
+    <td class="summary">Return the current time as a default-formatted string, in local time.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#sleep_ms">sleep_ms</a></td>
+    <td class="summary">Pause (sleep) the script for a specified number of milliseconds.</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "now"></a>
+    <strong>now ()</strong>
+    </dt>
+    <dd>
+    Return a microsecond timestamp representing the current time. </p>
+
+<p> The timestamp is the number of microseconds from some arbitrary start
+ time, but that start time is consistent within a script's execution.
+ The value of a single timestamp doesn't tell you anything about the
+ time by itself, but is instead useful for measuring the time between
+ two events.
+
+    </ul>
+    </ul>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        A microsecond timestamp representing the current time.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> clock = <span class="global">require</span> <span class="string">'lua_clock'</span>
+
+<span class="keyword">local</span> startTimestamp_us = clock.now()
+
+<span class="comment">-- Run something that takes time.
+</span>
+<span class="keyword">local</span> endTimestamp_us = clock.now()
+
+<span class="keyword">local</span> timeTaken_us = endTimestamp_us - startTimestamp_us</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "now_str"></a>
+    <strong>now_str ()</strong>
+    </dt>
+    <dd>
+    Return the current time as a default-formatted string, in local time.
+
+    </ul>
+    </ul>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        The current local time in string format.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+<span class="keyword">local</span> clock = <span class="global">require</span> <span class="string">'lua_clock'</span>
+
+log.info(<span class="string">"The time on the monotonic clock is "</span> .. clock.now_str())</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "sleep_ms"></a>
+    <strong>sleep_ms (duration)</strong>
+    </dt>
+    <dd>
+    Pause (sleep) the script for a specified number of milliseconds. </p>
+
+<p> Note that this sleep function is not precise for &lt;10 ms delays and should not
+ be used for timing critical operations.</p>
+
+<p> Note that if the script is aborted, this function will return
+ immediately (i.e. it will complete before the specified duration has elapsed).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">duration</span>
+            <span class="types"><span class="type">int</span></span>
+         Duration to sleep in milliseconds.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> clock = <span class="global">require</span> <span class="string">'lua_clock'</span>
+
+<span class="comment">-- Wait five seconds before continuing.
+</span>clock.sleep_ms(<span class="number">5000</span>)</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

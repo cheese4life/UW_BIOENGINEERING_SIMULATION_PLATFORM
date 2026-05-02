@@ -1,0 +1,167 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Writing_scripts">Writing scripts </a></li>
+</ul>
+
+
+<h2>Topics</h2>
+<ul class="">
+  <li><strong>ScriptsReadme</strong></li>
+</ul>
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="../globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="../devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="../devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><a href="../devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lua_alerts.html">lua_alerts</a></li>
+  <li><a href="../modules/lua_config.html">lua_config</a></li>
+  <li><a href="../modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><a href="../modules/lua_logger.html">lua_logger</a></li>
+  <li><a href="../modules/lua_clock.html">lua_clock</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+<h1>Scripts</h1>
+
+<p>There is a top-level <code>Initialize.lua</code> script which is responsible for initializing and homing all axes. </p>
+
+<p>Each axis has its own script <code>[AxisName].lua</code> containing functions for initializing and homing the axis. These functions are called from the top-level <code>Initialize.lua</code> script.</p>
+
+<p>The scripts are auto-generated using a set of template scripts (found in the <code>Templates/Scripts</code> folder) during first time startup or during re-configuration. During re-configuration, existing scripts will be updated.</p>
+
+<p>As the scripts are auto-generated, there are some conventions which must be followed in terms of script layout.</p>
+
+<p>The <code>Initialize.lua</code> script has the following sections, identified by code comments (which should not be removed):</p>
+
+<p>Near the top of the file, there is a 'require' section which loads each individual axis script. e.g.</p>
+
+
+<pre>
+<span class="comment">-- Begin Require Axis Scripts
+</span>
+<span class="global">require</span>(<span class="string">"XAxis"</span>)
+<span class="global">require</span>(<span class="string">"YAxis"</span>)
+
+<span class="comment">-- End Require Axis Scripts</span>
+</pre>
+
+
+<p>Within the <code>InitializeAllAxes()</code> function, there is an 'initialize' section which initializes each individual axis. e.g.</p>
+
+
+<pre>
+<span class="comment">-- Begin Initialize Axes
+</span>
+    InitializeXAxis()
+    InitializeYAxis()
+
+<span class="comment">-- End Initialize Axes</span>
+</pre>
+
+
+<p>Note that each individual axis initialize function is expected to be named <code>Initialize<a href="">AxisName</a></code>.</p>
+
+<p>Within the <code>HomeAllAxes()</code> function, there is an 'initialize' section which initializes each individual axis. e.g.</p>
+
+
+<pre>
+<span class="comment">-- Begin Home Axes
+</span>
+    HomeXAxis()
+    HomeYAxis()
+
+<span class="comment">-- End Home Axes</span>
+</pre>
+
+
+<p>Note that each individual axis home function is expected to be named <code>Home<a href="">AxisName</a></code>.</p>
+
+<p>If you maintain these conventions, you will be able to use the <em>Reconfigure</em> command from the MotionSynergyGUI to add/remove/edit products.
+If you are happy to manually update the configuration and associated scripts, then you can ignore these conventions and use a scripting layout
+that suits your application.</p>
+
+<p>There are also a number of common scripts used by all products:  </p>
+
+<ul>
+    <li><code>Utilities</code>: Various utilities to be used by scripts and other Lua modules.</li>
+    <li><code>ScriptPrelude.lua</code>: A module with code that should be called at the start of any top-level script.</li>
+</ul>
+
+<p><a name="Writing_scripts"></a></p>
+<h2>Writing scripts</h2>
+
+<p>When making a new top-level script, make sure to put <code>require(&quot;ScriptPrelude&quot;).Run()</code> at the top to install the abort handler and load emulation scripts. See <code>ScriptPrelude.lua</code> for more details.</p>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

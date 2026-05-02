@@ -1,0 +1,653 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lua_alerts.html">lua_alerts</a></li>
+  <li><strong>lua_config</strong></li>
+  <li><a href="../modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><a href="../modules/lua_logger.html">lua_logger</a></li>
+  <li><a href="../modules/lua_clock.html">lua_clock</a></li>
+</ul>
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="../globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="../devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="../devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><a href="../devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>lua_config</code></h1>
+<p>Provides access to the configuration system for retrieving settings from and writing settings to configuration.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#get_config">get_config</a></td>
+    <td class="summary">Return a reference to the main instrument configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#parse">parse</a></td>
+    <td class="summary">Load and parse the specified configuration file.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#get_boolean">get_boolean</a></td>
+    <td class="summary">Return a boolean setting from configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#get_integer">get_integer</a></td>
+    <td class="summary">Return an integer setting from configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#get_double">get_double</a></td>
+    <td class="summary">Return a double setting from configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#get_string">get_string</a></td>
+    <td class="summary">Return a string setting from configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#set_boolean">set_boolean</a></td>
+    <td class="summary">Update a boolean setting in configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#set_integer">set_integer</a></td>
+    <td class="summary">Update an integer setting in configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#set_double">set_double</a></td>
+    <td class="summary">Update a double setting in configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#set_string">set_string</a></td>
+    <td class="summary">Update a string setting in configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#write_local_config">write_local_config</a></td>
+    <td class="summary">Write all configuration setting changes to the local configuration file.</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "get_config"></a>
+    <strong>get_config ()</strong>
+    </dt>
+    <dd>
+    Return a reference to the main instrument configuration.
+
+    </ul>
+    </ul>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">IConfig</span></span>
+        A reference to the main instrument configuration.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Get a reference to the main instrument configuration.
+</span><span class="keyword">local</span> instrumentConfig = config.get_config()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "parse"></a>
+    <strong>parse (pathname)</strong>
+    </dt>
+    <dd>
+    Load and parse the specified configuration file.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">pathname</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the configuration file.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">IConfig</span></span>
+        A reference to the loaded configuration.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Load configuration from another file.
+</span><span class="keyword">local</span> extraConfig = config.parse(<span class="string">'DerivedProject_Extra.cfg'</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "get_boolean"></a>
+    <strong>get_boolean (iConfig, path)</strong>
+    </dt>
+    <dd>
+    Return a boolean setting from configuration.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">iConfig</span>
+            <span class="types"><span class="type">IConfig</span></span>
+         The configuration to retrive the setting from.
+        </li>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the setting (ie. <code>&apos;section.key&apos;</code>).
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        The value of the configuration setting.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Example instrument configuration file:
+</span><span class="comment">-- [Instrument]
+</span><span class="comment">-- Enable=false
+</span>
+<span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Get a reference to the main instrument configuration.
+</span><span class="keyword">local</span> instrumentConfig = config.get_config()
+
+<span class="comment">-- Read a boolean configuration setting using a 'section.key' path.
+</span><span class="keyword">local</span> value = config.get_boolean(instrumentConfig, <span class="string">'Instrument.Enable'</span>)
+<span class="comment">-- This returns a bool value of false.</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "get_integer"></a>
+    <strong>get_integer (iConfig, path)</strong>
+    </dt>
+    <dd>
+    Return an integer setting from configuration.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">iConfig</span>
+            <span class="types"><span class="type">IConfig</span></span>
+         The configuration to retrive the setting from.
+        </li>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the setting (ie. <code>&apos;section.key&apos;</code>).
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        The value of the configuration setting.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Example instrument configuration file:
+</span><span class="comment">-- [Axis]
+</span><span class="comment">-- Velocity=314
+</span>
+<span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Get a reference to the main instrument configuration.
+</span><span class="keyword">local</span> instrumentConfig = config.get_config()
+
+<span class="comment">-- Read a number (integer) configuration setting using a 'section.key' path.
+</span><span class="keyword">local</span> value = config.get_integer(instrumentConfig, <span class="string">'Axis.Velocity'</span>)
+<span class="comment">-- This returns a int value of 314.</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "get_double"></a>
+    <strong>get_double (iConfig, path)</strong>
+    </dt>
+    <dd>
+    Return a double setting from configuration.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">iConfig</span>
+            <span class="types"><span class="type">IConfig</span></span>
+         The configuration to retrive the setting from.
+        </li>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the setting (ie. <code>&apos;section.key&apos;</code>).
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        The value of the configuration setting.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Example instrument configuration file:
+</span><span class="comment">-- [Heater]
+</span><span class="comment">-- Temperature=26.5
+</span>
+<span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Get a reference to the main instrument configuration.
+</span><span class="keyword">local</span> instrumentConfig = config.get_config()
+
+<span class="comment">-- Read a number (double) configuration setting using a 'section.key' path.
+</span><span class="keyword">local</span> value = config.get_double(instrumentConfig, <span class="string">'Heater.Temperature'</span>)
+<span class="comment">-- This returns a double value of 26.5.</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "get_string"></a>
+    <strong>get_string (iConfig, path)</strong>
+    </dt>
+    <dd>
+    Return a string setting from configuration.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">iConfig</span>
+            <span class="types"><span class="type">IConfig</span></span>
+         The configuration to retrive the setting from.
+        </li>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the setting (ie. <code>&apos;section.key&apos;</code>).
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        The value of the configuration setting.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Example instrument configuration file:
+</span><span class="comment">-- [Instrument]
+</span><span class="comment">-- InstrumentId=SuperAnalyzer42
+</span>
+<span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Get a reference to the main instrument configuration.
+</span><span class="keyword">local</span> instrumentConfig = config.get_config()
+
+<span class="comment">-- Read a string configuration setting using a 'section.key' path.
+</span><span class="keyword">local</span> value = config.get_string(instrumentConfig, <span class="string">'Instrument.InstrumentId'</span>)
+<span class="comment">-- This returns a string value of "SuperAnalyzer42".</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "set_boolean"></a>
+    <strong>set_boolean (iConfig, path, newValue)</strong>
+    </dt>
+    <dd>
+    Update a boolean setting in configuration. </p>
+
+<p> Note: This only updates the in-memory copy. The <a href="../modules/lua_config.html#write_local_config">write_local_config</a> method must be called to persist changes to the local configuration file.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">iConfig</span>
+            <span class="types"><span class="type">IConfig</span></span>
+         The configuration to update.
+        </li>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the setting (ie. <code>&apos;section.key&apos;</code>).
+        </li>
+        <li><span class="parameter">newValue</span>
+            <span class="types"><span class="type">bool</span></span>
+         The new value to apply to the setting.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lua_config.html#write_local_config">write_local_config</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Get a reference to the main instrument configuration.
+</span><span class="keyword">local</span> instrumentConfig = config.get_config()
+
+<span class="comment">-- Write a boolean configuration setting using a 'section.key' path.
+</span>config.set_boolean(instrumentConfig, <span class="string">'Instrument.Enable'</span>, <span class="keyword">true</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "set_integer"></a>
+    <strong>set_integer (iConfig, path, newValue)</strong>
+    </dt>
+    <dd>
+    Update an integer setting in configuration. </p>
+
+<p> Note: This only updates the in-memory copy. The <a href="../modules/lua_config.html#write_local_config">write_local_config</a> method must be called to persist changes to the local configuration file.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">iConfig</span>
+            <span class="types"><span class="type">IConfig</span></span>
+         The configuration to update.
+        </li>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the setting (ie. <code>&apos;section.key&apos;</code>).
+        </li>
+        <li><span class="parameter">newValue</span>
+            <span class="types"><span class="type">int</span></span>
+         The new value to apply to the setting.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lua_config.html#write_local_config">write_local_config</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Get a reference to the main instrument configuration.
+</span><span class="keyword">local</span> instrumentConfig = config.get_config()
+
+<span class="comment">-- Write an integer configuration setting using a 'section.key' path.
+</span>config.set_integer(instrumentConfig, <span class="string">"Axis.Velocity"</span>, <span class="number">20000</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "set_double"></a>
+    <strong>set_double (iConfig, path, newValue)</strong>
+    </dt>
+    <dd>
+    Update a double setting in configuration. </p>
+
+<p> Note: This only updates the in-memory copy. The <a href="../modules/lua_config.html#write_local_config">write_local_config</a> method must be called to persist changes to the local configuration file.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">iConfig</span>
+            <span class="types"><span class="type">IConfig</span></span>
+         The configuration to update.
+        </li>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the setting (ie. <code>&apos;section.key&apos;</code>).
+        </li>
+        <li><span class="parameter">newValue</span>
+            <span class="types"><span class="type">number</span></span>
+         The new value to apply to the setting.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lua_config.html#write_local_config">write_local_config</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Get a reference to the main instrument configuration.
+</span><span class="keyword">local</span> instrumentConfig = config.get_config()
+
+<span class="comment">-- Write a double configuration setting using a 'section.key' path.
+</span>config.set_double(instrumentConfig, <span class="string">"Heater.Temperature"</span>, <span class="number">68.5</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "set_string"></a>
+    <strong>set_string (iConfig, path, newValue)</strong>
+    </dt>
+    <dd>
+    Update a string setting in configuration. </p>
+
+<p> Note: This only updates the in-memory copy. The <a href="../modules/lua_config.html#write_local_config">write_local_config</a> method must be called to persist changes to the local configuration file.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">iConfig</span>
+            <span class="types"><span class="type">IConfig</span></span>
+         The configuration to update.
+        </li>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the setting (ie. <code>&apos;section.key&apos;</code>).
+        </li>
+        <li><span class="parameter">newValue</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The new value to apply to the setting.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lua_config.html#write_local_config">write_local_config</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Get a reference to the main instrument configuration.
+</span><span class="keyword">local</span> instrumentConfig = config.get_config()
+
+<span class="comment">-- Write a string configuration setting using a 'section.key' path.
+</span>config.set_string(instrumentConfig, <span class="string">"Instrument.InstrumentId"</span>, <span class="string">"Testbed3"</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "write_local_config"></a>
+    <strong>write_local_config (iConfig)</strong>
+    </dt>
+    <dd>
+    Write all configuration setting changes to the local configuration file. </p>
+
+<p> This method can be called after using the <code>set_*()</code> methods to persist
+ the changes to the local configuration file associated with this
+ configuration instance (usually <code>[config_filename].local.cfg</code>). If this
+ method is not called, any changes will be lost the next time the
+ software is restarted.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">iConfig</span>
+            <span class="types"><span class="type">IConfig</span></span>
+         The configuration to persist.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Example instrument local configuration file before writing
+</span><span class="comment">-- [Heater]
+</span><span class="comment">-- Temperature=24.5
+</span>
+<span class="keyword">local</span> config = <span class="global">require</span> <span class="string">'lua_config'</span>
+<span class="comment">-- Get a reference to the main instrument configuration.
+</span><span class="keyword">local</span> instrumentConfig = config.get_config()
+
+<span class="comment">-- Update a setting
+</span>config.set_double(instrumentConfig, <span class="string">"Heater.Temperature"</span>, <span class="number">45.2</span>)
+<span class="comment">-- persist to local config
+</span>config.write_local_config(instrumentConfig)
+
+<span class="comment">-- The local configuration file is modified after write_local_config()
+</span><span class="comment">-- [Heater]
+</span><span class="comment">-- Temperature=45.2</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

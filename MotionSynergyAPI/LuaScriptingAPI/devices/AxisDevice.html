@@ -1,0 +1,3109 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
+</ul>
+
+
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><strong>AxisDevice</strong></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="../devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><a href="../devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="../globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lua_alerts.html">lua_alerts</a></li>
+  <li><a href="../modules/lua_config.html">lua_config</a></li>
+  <li><a href="../modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><a href="../modules/lua_logger.html">lua_logger</a></li>
+  <li><a href="../modules/lua_clock.html">lua_clock</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Device <code>AxisDevice</code></h1>
+<p>A single axis of a motion control system (linear axis motors, rotary axis motors).</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#Connect">Connect</a></td>
+    <td class="summary">Establish a connection to the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Initialize">Initialize</a></td>
+    <td class="summary">Initialize the device and makes it ready for use.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Wait">Wait</a></td>
+    <td class="summary">Wait for the previous asynchronous action on this device to complete.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Shutdown">Shutdown</a></td>
+    <td class="summary">Shutdown the device in preparation for power off.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#EStop">EStop</a></td>
+    <td class="summary">Perform an emergency stop of the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#EStopWait">EStopWait</a></td>
+    <td class="summary">Wait for the previous EStop to complete.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#MoveAbsolute">MoveAbsolute</a></td>
+    <td class="summary">Move the axis to an absolute position.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#MoveRelative">MoveRelative</a></td>
+    <td class="summary">Move the axis relative to the current position.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NMoveAbsolute">NMoveAbsolute</a></td>
+    <td class="summary">Move the axis to a named absolute position.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NMoveRelative">NMoveRelative</a></td>
+    <td class="summary">Move the axis relative to the current position by a named distance.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NMoveOffset">NMoveOffset</a></td>
+    <td class="summary">Move axis to a location that is a fixed named distance from a named absolute position.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#MoveRelativeToFlag">MoveRelativeToFlag</a></td>
+    <td class="summary">Move axis to the given named flag, searching up to the given maximum distance.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NMoveRelativeToFlag">NMoveRelativeToFlag</a></td>
+    <td class="summary">Move axis to the given named flag, searching up to a named maximum distance.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#MoveRelativeToFlagOpenLoop">MoveRelativeToFlagOpenLoop</a></td>
+    <td class="summary">Move axis to the given named flag in open loop mode.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NMoveRelativeToFlagOpenLoop">NMoveRelativeToFlagOpenLoop</a></td>
+    <td class="summary">Move axis to the given named flag in open loop mode.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#MoveRelativeUDP">MoveRelativeUDP</a></td>
+    <td class="summary">Move axis using the currently selected time-based UDP profile.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#MoveContinuous">MoveContinuous</a></td>
+    <td class="summary">Moves axis to the specified absolute position in selected units (mm, um, or nm), without needing to wait for an existing move to complete.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#GetFlagStatus">GetFlagStatus</a></td>
+    <td class="summary">Get the logical state (<code>true</code> or <code>false</code>) of the specified flag associated with this axis.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#ResetPosition">ResetPosition</a></td>
+    <td class="summary">Reset the commanded and encoder position of the axis to the specified position.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#ResetPosition">ResetPosition</a></td>
+    <td class="summary">Reset the commanded position to the current encoder position.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NResetPosition">NResetPosition</a></td>
+    <td class="summary">Reset the current (and possibly encoder) position of the motor to the value of a named position.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Stop">Stop</a></td>
+    <td class="summary">Stop the current movement action in a controlled manner.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SelectMoveProfile">SelectMoveProfile</a></td>
+    <td class="summary">Set the Acceleration, Deceleration, Velocity and Jerk used for axis moves to those specified by the given named profile.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SetNamedPosition">SetNamedPosition</a></td>
+    <td class="summary">Update the coordinate associated with a named position.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SetNamedDistance">SetNamedDistance</a></td>
+    <td class="summary">Update the distance associated with a named distance.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SetCommandedPositionAsNamedPosition">SetCommandedPositionAsNamedPosition</a></td>
+    <td class="summary">Update the coordinate associated with a named position to the current axis position.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SetNamedMoveProfile">SetNamedMoveProfile</a></td>
+    <td class="summary">Update the Acceleration, Deceleration, Velocity and Jerk of a specified named profile.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Enable">Enable</a></td>
+    <td class="summary">Enable / energize the axis motor.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Disable">Disable</a></td>
+    <td class="summary">Disable / de-energize the axis motor.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SetExternalControl">SetExternalControl</a></td>
+    <td class="summary">Enable / disable control of the axis via an external pulse signal.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#EnableTraceCapture">EnableTraceCapture</a></td>
+    <td class="summary">Enable capture of trace data.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NEnableTraceCapture">NEnableTraceCapture</a></td>
+    <td class="summary">Enable capture of trace data using a named trace profile defined in configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#StopTraceCapture">StopTraceCapture</a></td>
+    <td class="summary">Stop the capture of trace data.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SaveTraceCapture">SaveTraceCapture</a></td>
+    <td class="summary">Save the trace data captured during the last move (see EnableTraceCapture() and NEnableTraceCapture()) as a csv file.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#EnableTriggerOnPosition">EnableTriggerOnPosition</a></td>
+    <td class="summary">Enable trigger on position (TOP).</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NEnableTriggerOnPosition">NEnableTriggerOnPosition</a></td>
+    <td class="summary">Enable trigger on position (TOP).</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#DisableTriggerOnPosition">DisableTriggerOnPosition</a></td>
+    <td class="summary">Disable trigger on position (TOP).</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SetDigitalOutputTrigger">SetDigitalOutputTrigger</a></td>
+    <td class="summary">Enable / disable a digital output (AxisOut1) trigger based on the axis motion.</td>
+    </tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#Name">Name</a></td>
+    <td class="summary">Name of the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Type">Type</a></td>
+    <td class="summary">Type of the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#IsActionInProgress">IsActionInProgress</a></td>
+    <td class="summary">Action progress state of the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#IsConnected">IsConnected</a></td>
+    <td class="summary">Connected state of the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#HaveAttemptedConnect">HaveAttemptedConnect</a></td>
+    <td class="summary">Was a connection to the device attempted?</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#ActualPosition">ActualPosition</a></td>
+    <td class="summary">Get the actual position of the axis as reported by the encoder.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#TargetPosition">TargetPosition</a></td>
+    <td class="summary">Get the position the axis was commanded to move to.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#PositionError">PositionError</a></td>
+    <td class="summary">Get the current axis position error.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Velocity">Velocity</a></td>
+    <td class="summary">The maximum velocity that will be used for axis moves.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Acceleration">Acceleration</a></td>
+    <td class="summary">The maximum acceleration that will be used for axis moves.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Jerk">Jerk</a></td>
+    <td class="summary">The maximum jerk that will be used for axis moves.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Deceleration">Deceleration</a></td>
+    <td class="summary">The maximum deceleration that will be used for axis moves.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NamedPositions">NamedPositions</a></td>
+    <td class="summary">Returns a table of named positions for this axis.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NamedDistances">NamedDistances</a></td>
+    <td class="summary">Returns a table of named distances for this axis.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NamedFlags">NamedFlags</a></td>
+    <td class="summary">Returns a table of named flags for this axis</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#NamedMoveProfiles">NamedMoveProfiles</a></td>
+    <td class="summary">Returns a table of move profiles for this axis.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#IsEnabled">IsEnabled</a></td>
+    <td class="summary">Get the enabled (energized) / disabled (de-energized) state the axis motor.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#ExternalControl">ExternalControl</a></td>
+    <td class="summary">Get the currently configured move distance per pulse.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#IsTraceCaptureEnabled">IsTraceCaptureEnabled</a></td>
+    <td class="summary">Is trace capture enabled for the next axis move?</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#IsTriggerOnPositionEnabled">IsTriggerOnPositionEnabled</a></td>
+    <td class="summary">Get the state of the trigger on position (TOP) function.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#DigitalOutputTrigger">DigitalOutputTrigger</a></td>
+    <td class="summary">Get the digital output trigger in effect.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#MotorCurrent">MotorCurrent</a></td>
+    <td class="summary">Get the RMS current being used to drive the motor at this instant.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#MotionControllerConfiguration">MotionControllerConfiguration</a></td>
+    <td class="summary">Get the current motion controller configuration.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#UserDefinedProfile">UserDefinedProfile</a></td>
+    <td class="summary">Get the user defined profile for this axis.</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Connect"></a>
+    <strong>Connect ()</strong>
+    </dt>
+    <dd>
+    Establish a connection to the device.
+
+    </ul>
+    </ul>
+    </ul>
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Initialize"></a>
+    <strong>Initialize ()</strong>
+    </dt>
+    <dd>
+
+<p>Initialize the device and makes it ready for use. </p>
+
+<p> This function does not need a <code>Wait</code> call after it - this function blocks until the device is initialized.</p>
+
+<p> In the case of an axis this involves:</p>
+
+<ul>
+    <li>Establishing a connection to the hardware.</li>
+    <li>Performing Analog Calibration.</li>
+    <li>Performing Commutation.</li>
+</ul>
+
+
+
+    </ul>
+    </ul>
+    </ul>
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Wait"></a>
+    <strong>Wait ([timeout_ms=DefaultTimeout_ms])</strong>
+    </dt>
+    <dd>
+    Wait for the previous asynchronous action on this device to complete. </p>
+
+<p> Each device can have only one action in progress at a time - starting another
+ action while one is already in progress raises an error. <code>Wait</code> waits for
+ the currently-running action to finish before returning, or checks the last
+ action's status if it has already completed. After <code>Wait</code> returns, another
+ action can be started.</p>
+
+<p> Changes to device settings are also asynchronous, and require <code>Wait</code> to be called to block
+ until the setting has actually been set.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">timeout_ms</span>
+            <span class="types"><span class="type">int</span></span>
+         The length of time to wait from when this function is called before raising a timeout error.
+         (<em>default</em> DefaultTimeout_ms)
+        </li>
+    </ul>
+
+
+    <h3>Raises:</h3>
+    An error is raised if the timeout expires before the action completes, the previous asynchronous action was EStopped or if the action or setting change being waited on fails for any other reason.
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">Device.PerformAction()
+
+<span class="comment">-- The function above returns immediately, but the action is still in progress.
+</span><span class="comment">-- We can call Wait() to block until the action is actually finished.
+</span>Device.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Shutdown"></a>
+    <strong>Shutdown ()</strong>
+    </dt>
+    <dd>
+    Shutdown the device in preparation for power off.  Once a device has been shutdown, it will accept no further commands.
+ If there is a connection associated with this device and this is the last device using the connection, the connection will be closed.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">Device.Shutdown()
+Device.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "EStop"></a>
+    <strong>EStop ()</strong>
+    </dt>
+    <dd>
+    Perform an emergency stop of the device.  This will immediately halt any motion (e.g. an abrupt stop will be
+ performed for an axis device) and return the device to a safe, passive state (e.g. for an axis device this means the operating mode is set to disable the axis, motor output, current control, position loop, and trajectory).
+ The next call to Wait() on this device will raise an error, indicating the device has been EStopped and the
+ command in progress was interrupted.
+ Alternatively, EStopWait() can be called to wait for the estop to complete without throwing an exception.
+ Initialize() must be called on this device before it will accept further commands.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#EStopWait">EStopWait</a>.
+    </ul>
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/BaseDevice.html#EStopWait">EStopWait</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">Device.EStop()
+Device.EStopWait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "EStopWait"></a>
+    <strong>EStopWait ([timeout_ms=DefaultTimeout_ms])</strong>
+    </dt>
+    <dd>
+    Wait for the previous EStop to complete.  Does not raise an error if the EStop was successful.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">timeout_ms</span>
+            <span class="types"><span class="type">int</span></span>
+         The length of time to wait before raising a timeout error.
+         (<em>default</em> DefaultTimeout_ms)
+        </li>
+    </ul>
+
+
+    <h3>Raises:</h3>
+    An error is raised if the timeout expires before the EStop completes.
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/BaseDevice.html#EStop">EStop</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">Device.EStop()
+Device.EStopWait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "MoveAbsolute"></a>
+    <strong>MoveAbsolute (position)</strong>
+    </dt>
+    <dd>
+    Move the axis to an absolute position. </p>
+
+<p> <a href="../devices/AxisDevice.html#NMoveAbsolute">NMoveAbsolute</a> is preferred over MoveAbsolute, as using named positions
+ from instrument config makes the intent of the move clearer, and allows
+ the coordinates to be calibrated for each device instance, compensating
+ for manufacturing tolerances.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">position</span>
+            <span class="types"><span class="type">number</span></span>
+         Target position for the move in selected units (mm, um, or nm).
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#NMoveAbsolute">NMoveAbsolute</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Sequential axis move.
+</span>XAxis.MoveAbsolute(<span class="number">1000</span>)
+XAxis.Wait()
+YAxis.MoveAbsolute(-<span class="number">1000</span>)
+YAxis.Wait()
+
+<span class="comment">-- Parallel axis move.
+</span>XAxis.MoveAbsolute(<span class="number">1000</span>)
+YAxis.MoveAbsolute(-<span class="number">1000</span>)
+XAxis.Wait()
+YAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "MoveRelative"></a>
+    <strong>MoveRelative (distance)</strong>
+    </dt>
+    <dd>
+    Move the axis relative to the current position. </p>
+
+<p> <a href="../devices/AxisDevice.html#NMoveRelative">NMoveRelative</a> is preferred over MoveRelative, as using named positions
+ from instrument config makes the intent of the move clearer, and allows
+ the distances to be calibrated for each device instance, compensating
+ for manufacturing tolerances.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">distance</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount by which to move from the current position in selected units (mm, um, or nm). Values can be positive or negative.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#NMoveRelative">NMoveRelative</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Start a relative move from the current location.
+</span>XAxis.MoveRelative(<span class="number">500</span>)
+
+<span class="comment">-- It's possible to start another move on another axis while this move is
+</span><span class="comment">-- in progress.
+</span>
+<span class="comment">-- Wait for the move to complete.
+</span>XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NMoveAbsolute"></a>
+    <strong>NMoveAbsolute (namedPosition)</strong>
+    </dt>
+    <dd>
+
+<p>Move the axis to a named absolute position. </p>
+
+<p> Named positions need to be specified in the instrument configuration as follows:</p>
+<pre><code>[XAxis_Device]
+Type=AxisDevice
+NamedPositions=XAxisNamedPositions
+
+[XAxisNamedPositions]
+Home=100
+SlideLoad=5000
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namedPosition</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Name of the absolute position to move to. Named positions are specified in configuration.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#MoveAbsolute">MoveAbsolute</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Perform a move to a named absolute position.
+</span>XAxis.NMoveAbsolute(<span class="string">'SlideLoad'</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NMoveRelative"></a>
+    <strong>NMoveRelative (namedDistance)</strong>
+    </dt>
+    <dd>
+
+<p>Move the axis relative to the current position by a named distance. </p>
+
+<p> Named distances need to be specified in configuration as follows:</p>
+<pre><code>[XAxis_Device]
+Type=AxisDevice
+NamedDistances=XAxisNamedDistances
+
+[XAxisNamedDistances]
+MoveOutOfHome=10000
+HomingDistance=-70000
+FirstWellOffset=-1500
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namedDistance</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Name of the distance to move. Named distances are specified in configuration and can be positive or negative.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#MoveRelative">MoveRelative</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Perform a relative move by a named distance.
+</span>XAxis.NMoveRelative(<span class="string">'MoveOutOfHome'</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NMoveOffset"></a>
+    <strong>NMoveOffset (namedPosition, namedDistance)</strong>
+    </dt>
+    <dd>
+
+<p>Move axis to a location that is a fixed named distance from a named absolute position.
+ This is equivalent to a <a href="../devices/AxisDevice.html#MoveAbsolute">MoveAbsolute</a><code>(absolutePosition + distance)</code>.</p>
+
+<p> Named positions and distances need to be specified in configuration as follows:</p>
+<pre><code>[XAxis_Device]
+Type=AxisDevice
+NamedPositions=XAxisNamedPositions
+NamedDistances=XAxisNamedDistances
+
+[XAxisNamedPositions]
+Home=100
+SlideLoad=5000
+
+[XAxisNamedDistances]
+MoveOutOfHome=10000
+HomingDistance=-70000
+FirstWellOffset=-1500
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namedPosition</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Name of the absolute position to offset the move from.
+        </li>
+        <li><span class="parameter">namedDistance</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Name of the relative distance from the absolute position.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Perform an offset move.
+</span>XAxis.NMoveOffset(<span class="string">'SlideLoad'</span>, <span class="string">'FirstWellOffset'</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "MoveRelativeToFlag"></a>
+    <strong>MoveRelativeToFlag (distance, flagName)</strong>
+    </dt>
+    <dd>
+
+<p>Move axis to the given named flag, searching up to the given maximum distance. </p>
+
+<p> <a href="../devices/AxisDevice.html#NMoveRelativeToFlag">NMoveRelativeToFlag</a> is preferred over MoveRelativeToFlag as it makes the script easier to understand
+ (using named distances instead of just raw numerical distances).</p>
+
+<p> Named flags need to be specified in configuration as follows:</p>
+<pre><code>[XAxis_Device]
+Type=AxisDevice
+NamedFlags=XAxisNamedFlags
+
+[XAxisNamedFlags]
+LeftReferenceSwitch=0
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">distance</span>
+            <span class="types"><span class="type">number</span></span>
+         Maximum distance to move while searching for the flag.
+        </li>
+        <li><span class="parameter">flagName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Named flag to search for.
+        </li>
+    </ul>
+
+
+    <h3>Raises:</h3>
+    An error is raised if the maximum distance was traversed and the flag was not found.
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#NMoveRelativeToFlag">NMoveRelativeToFlag</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Perform a move searching for a flag.
+</span>XAxis.MoveRelativeToFlag(-<span class="number">20000</span>, <span class="string">"LeftReferenceSwitch"</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NMoveRelativeToFlag"></a>
+    <strong>NMoveRelativeToFlag (namedDistance, flagName)</strong>
+    </dt>
+    <dd>
+
+<p>Move axis to the given named flag, searching up to a named maximum distance. </p>
+
+<p> Named flags and distances need to be specified in configuration as follows:</p>
+<pre><code>[XAxis_Device]
+Type=AxisDevice
+NamedFlags=XAxisNamedFlags
+NamedDistances=XAxisNamedDistances
+
+[XAxisNamedDistances]
+MoveOutOfHome=10000
+HomingDistance=-70000
+FirstWellOffset=-1500
+
+[XAxisNamedFlags]
+LeftReferenceSwitch=0
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namedDistance</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Named maximum distance to search for the flag.
+        </li>
+        <li><span class="parameter">flagName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Named flag to search for.
+        </li>
+    </ul>
+
+
+    <h3>Raises:</h3>
+    An error is raised if the maximum distance was traversed and the flag was not found.
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#MoveRelativeToFlag">MoveRelativeToFlag</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Perform a move searching for a flag.
+</span>XAxis.NMoveRelativeToFlag(<span class="string">"HomingDistance"</span>, <span class="string">"LeftReferenceSwitch"</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "MoveRelativeToFlagOpenLoop"></a>
+    <strong>MoveRelativeToFlagOpenLoop (flagName, offsetFromFlag)</strong>
+    </dt>
+    <dd>
+
+<p>Move axis to the given named flag in open loop mode. </p>
+
+<p> This command can only be used prior to initialization. It can be used to move an axis to
+ a known location prior to initialization and homing.</p>
+
+<p> <a href="../devices/AxisDevice.html#NMoveRelativeToFlagOpenLoop">NMoveRelativeToFlagOpenLoop</a> is preferred over MoveRelativeToFlagOpenLoop as it makes the script easier to understand
+ (using named distances instead of just raw numerical distances).</p>
+
+<p> Named flags need to be specified in configuration as follows:</p>
+<pre><code>[XAxis_Device]
+Type=AxisDevice
+NamedFlags=XAxisNamedFlags
+
+[XAxisNamedFlags]
+NegativeLimit=0
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flagName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Named flag to search for.
+        </li>
+        <li><span class="parameter">offsetFromFlag</span>
+            <span class="types"><span class="type">number</span></span>
+
+<p> An offset (+ve or -ve) in selected units (mm, um, or nm) to move away from the flag</p>
+<pre><code>                           once the flag has been reached. e.g. supports backing off the positive limit (use a -ve offset)
+                           or negative limit (use a +ve offset).
+</code></pre>
+
+        </li>
+    </ul>
+
+
+    <h3>Raises:</h3>
+    An error is raised if the flag cannot be reached.
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#NMoveRelativeToFlagOpenLoop">NMoveRelativeToFlagOpenLoop</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Connect to an axis and perform an open loop move to the negative limit and then back off the limit by 5 units.
+</span>XAxis.Connect()
+XAxis.Wait()
+XAxis.MoveRelativeToFlagOpenLoop(<span class="string">"NegativeLimit"</span>, <span class="number">5</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NMoveRelativeToFlagOpenLoop"></a>
+    <strong>NMoveRelativeToFlagOpenLoop (flagName, offsetFromFlag)</strong>
+    </dt>
+    <dd>
+
+<p>Move axis to the given named flag in open loop mode. </p>
+
+<p> This command can only be used prior to initialization. It can be used to move an axis to
+ a known location prior to initialization and homing.</p>
+
+<p> Named flags need to be specified in configuration as follows:</p>
+<pre><code>[XAxis_Device]
+Type=AxisDevice
+NamedFlags=XAxisNamedFlags
+
+[XAxisNamedFlags]
+NegativeLimit=0
+
+[XAxisNamedDistances]
+NegativeLimitOffset=5
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flagName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Named flag to search for.
+        </li>
+        <li><span class="parameter">offsetFromFlag</span>
+            <span class="types"><span class="type">number</span></span>
+         A named distance offset to move away from the flag once the flag has been reached. e.g. supports backing off the positive or negative limit.
+        </li>
+    </ul>
+
+
+    <h3>Raises:</h3>
+    An error is raised if the flag cannot be reached.
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#MoveRelativeToFlagOpenLoop">MoveRelativeToFlagOpenLoop</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Connect to an axis and perform an open loop move to the negative limit and then back off the limit by 5 units.
+</span>XAxis.Connect()
+XAxis.Wait()
+XAxis.NMoveRelativeToFlagOpenLoop(<span class="string">"NegativeLimit"</span>, <span class="string">"NegativeLimitOffset"</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "MoveRelativeUDP"></a>
+    <strong>MoveRelativeUDP (repeats)</strong>
+    </dt>
+    <dd>
+    Move axis using the currently selected time-based UDP profile.
+  A time-based UDP profile must have first been selected by calling SelectMoveProfile().
+  If a time-based UDP profile is not active, this method will return an error.
+  NOTE: This function is obsolete. Use the equivalent function on the UserDefinedProfile interface.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">repeats</span>
+            <span class="types"><span class="type">unsigned</span></span>
+         The number of repetitions of the move to perform.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Perform user defined move 5 times
+</span>XAxis.UserDefinedProfile.MoveRelativeUDP(<span class="number">5</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "MoveContinuous"></a>
+    <strong>MoveContinuous (position, acceleration, velocity, deceleration)</strong>
+    </dt>
+    <dd>
+    Moves axis to the specified absolute position in selected units (mm, um, or nm), without needing to wait for an existing move to complete. </p>
+
+<p> It uses the supplied trajectory parameters (velocity, acceleration, deceleration), not the currently selected move profile.
+ The trajectory parameters can also be modified during a move.
+ Note that only trapezoidal moves are supported for continuous moves, not s-curve moves, hence the lack of a jerk parameter.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">position</span>
+            <span class="types"><span class="type">number</span></span>
+         Value of the absolute coordinate to move to in selected units (mm, um, or nm).
+        </li>
+        <li><span class="parameter">acceleration</span>
+            <span class="types"><span class="type">number</span></span>
+         Maximum acceleration to be set in selected units (mm/s^2, um/s^2, or nm/s^2).
+        </li>
+        <li><span class="parameter">velocity</span>
+            <span class="types"><span class="type">number</span></span>
+         Maximum velocity to be set in selected units (mm/s, um/s, or nm/s).
+        </li>
+        <li><span class="parameter">deceleration</span>
+            <span class="types"><span class="type">number</span></span>
+         Maximum deceleration to be set in selected units (mm/s^2, um/s^2, or nm/s^2).
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Perform the first move to position 20.
+</span>XAxis.MoveContinuous(<span class="number">20</span>, <span class="number">500</span>, <span class="number">100</span>, <span class="number">500</span>)
+- Wait half a second
+lock.sleep_ms(<span class="number">500</span>)
+
+- Change the target position back to position <span class="number">10.</span>
+Axis.MoveContinuous(<span class="number">10</span>, <span class="number">500</span>, <span class="number">100</span>, <span class="number">500</span>)
+Axis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "GetFlagStatus"></a>
+    <strong>GetFlagStatus (flagName)</strong>
+    </dt>
+    <dd>
+
+<p>Get the logical state (<code>true</code> or <code>false</code>) of the specified flag associated with this axis. </p>
+
+<p> Note that whether the value <code>true</code> means that the flag is blocked or clear depends
+ on the polarity set for that flag in the axis SCP configuration.</p>
+
+<p> Named flags need to be specified in configuration as follows:</p>
+<pre><code>[XAxis_Device]
+Type=AxisDevice
+NamedFlags=XAxisNamedFlags
+
+[XAxisNamedFlags]
+LeftReferenceSwitch=0
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flagName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The name of the flag as defined in the instrument configuration.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        <code>true</code> or <code>false</code> representing the status of the flag.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- If inside the home flag, move out of home.
+</span><span class="keyword">if</span> XAxis.GetFlagStatus(<span class="string">"LeftReferenceSwitch"</span>) <span class="keyword">then</span>
+   XAxis.NMoveRelative(<span class="string">"MoveOutOfHome"</span>)
+   XAxis.Wait()
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "ResetPosition"></a>
+    <strong>ResetPosition (position)</strong>
+    </dt>
+    <dd>
+    Reset the commanded and encoder position of the axis to the specified position. </p>
+
+<p> This is typically used to reset the position of the axis after performing a homing sequence.</p>
+
+<p> <a href="../devices/AxisDevice.html#NResetPosition">NResetPosition</a> is preferred over ResetPosition as it makes the script easier to understand
+ (a named position is specified instead of a raw numerical position).
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">position</span>
+            <span class="types"><span class="type">number</span></span>
+         New position of the axis
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#NResetPosition">NResetPosition</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Reset the axis position to zero.
+</span>XAxis.ResetPosition(<span class="number">0</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "ResetPosition"></a>
+    <strong>ResetPosition ()</strong>
+    </dt>
+    <dd>
+    Reset the commanded position to the current encoder position. </p>
+
+<p> This is typically used to reset the position of the axis after a motion (position) error.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Reset the axis commanded position to match the current encoder position
+</span>XAxis.ResetPosition()
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NResetPosition"></a>
+    <strong>NResetPosition (namedPosition)</strong>
+    </dt>
+    <dd>
+    Reset the current (and possibly encoder) position of the motor to the value of a named position. </p>
+
+<p> This is mainly used to reset the position of the axis after performing a homing sequence.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namedPosition</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         New named position of the motor.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#ResetPosition">ResetPosition</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Part of a typical axis home sequence. At this point in the script, the
+</span><span class="comment">-- axis is outside the home flag (left reference switch).
+</span>
+<span class="comment">-- Search for the home flag, compensate for deceleration after flag found, and
+</span><span class="comment">-- reset the home position.
+</span>XAxis.NMoveRelativeToFlag(<span class="string">"HomingDistance"</span>, <span class="string">"LeftReferenceSwitch"</span>)
+XAxis.Wait()
+<span class="keyword">local</span> compensateDistance = XAxis.LatchedFlagPosition - XAxis.CommandedPosition
+XAxis.MoveRelative(compensateDistance)
+XAxis.Wait()
+XAxis.NResetPosition(<span class="string">"Home"</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Stop"></a>
+    <strong>Stop ()</strong>
+    </dt>
+    <dd>
+    Stop the current movement action in a controlled manner.  Will stop the current move action and return immediately.
+ The original move command will complete once the axis has come to a halt. If there
+ is no movement in progress, the operation will complete without error.
+ Wait() must still called after issuing a Stop() to wait for the axis to come to a halt.
+ Unlike EStop(), the Stop() command does not require the axis to be re-initialized.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Set the acceleration, deceleration, velocity and jerk to values
+</span><span class="comment">-- suitable for a move.
+</span>XAxis.SelectMoveProfile(<span class="string">'XAxisStandardMoveProfile'</span>)
+XAxis.Wait()
+
+<span class="comment">-- Start a move.
+</span>XAxis.MoveAbsolute(<span class="number">50</span>)
+
+<span class="comment">-- Some time later, stop the move.
+</span>XAxis.Stop()
+XAxis.Wait()
+
+<span class="comment">-- The axis is now stationary.</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SelectMoveProfile"></a>
+    <strong>SelectMoveProfile (moveProfileName)</strong>
+    </dt>
+    <dd>
+
+<p>Set the Acceleration, Deceleration, Velocity and Jerk used for axis moves to those specified by the given named profile. </p>
+
+<p> Move profiles need to be specified in configuration as follows:</p>
+<pre><code>[XAxis_Device]
+Type=AxisDevice
+NamedMoveProfiles=XAxisHomingProfile,XAxisMoveProfile
+
+[XAxisHomingProfile]
+Acceleration=2000000
+Deceleration=2000000
+Velocity=1000
+Jerk=0
+
+[XAxisMoveProfile]
+Acceleration=2000000
+Deceleration=2000000
+Velocity=25000
+Jerk=0
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">moveProfileName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Name of the profile in configuration to select.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <li><a href="../devices/AxisDevice.html#Acceleration">Acceleration</a></li>
+         <li><a href="../devices/AxisDevice.html#Velocity">Velocity</a></li>
+         <li><a href="../devices/AxisDevice.html#Jerk">Jerk</a></li>
+         <li><a href="../devices/AxisDevice.html#Deceleration">Deceleration</a></li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Select the homing profile which uses a much slower velocity than a
+</span><span class="comment">-- normal move profile.
+</span>XAxis.SelectMoveProfile(<span class="string">"XAxisHomingProfile"</span>)
+XAxis.Wait()
+
+<span class="comment">-- This move is performed with the
+</span><span class="comment">-- acceleration/deceleration/velocity/jerk specified in the
+</span><span class="comment">-- XAxisHomingProfile profile.
+</span>XAxis.NMoveAbsolute(<span class="string">"Home"</span>);
+XAxis.Wait()
+
+<span class="comment">-- select a different profile.
+</span>XAxis.SelectMoveProfile(<span class="string">"XAxisHomingProfile"</span>)
+XAxis.Wait()
+
+<span class="comment">-- Now moves will use the new profile's settings.
+</span>XAxis.NMoveAbsolute(<span class="string">"Chamber1"</span>);
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SetNamedPosition"></a>
+    <strong>SetNamedPosition (namedPosition, position[, positionMustExist=true])</strong>
+    </dt>
+    <dd>
+    Update the coordinate associated with a named position. </p>
+
+<p> The new coordinate will be persisted to the local (instrument-specific) configuration.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namedPosition</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The name of the position to update.
+        </li>
+        <li><span class="parameter">position</span>
+            <span class="types"><span class="type">number</span></span>
+         The new coordinate to associate with the named position.
+        </li>
+        <li><span class="parameter">positionMustExist</span>
+            <span class="types"><span class="type">bool</span></span>
+         true will cause an error to be thrown if the named position doesn't already exist, false will allow a new named position to be added.
+         (<em>default</em> true)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Named positions need to be specified in configuration as follows:
+</span><span class="comment">-- [XAxis_Device]
+</span><span class="comment">-- Type=AxisDevice
+</span><span class="comment">-- NamedPositions=XAxisNamedPositions
+</span>
+<span class="comment">-- [XAxisNamedPositions]
+</span><span class="comment">-- Home=100
+</span><span class="comment">-- SlideLoad=5000
+</span>
+<span class="comment">-- Update the named position to the current axis position (position most recently commanded).
+</span><span class="comment">-- Note this can be achieved more easily by calling SetCommandedPositionAsNamedPosition().
+</span><span class="keyword">local</span> commandedPosition = XAxis.CommandedPosition
+XAxis.SetNamedPosition(<span class="string">"SlideLoad"</span>, commandedPosition)
+XAxis.Wait()
+
+<span class="comment">-- After the above call to SetNamedPosition, the local configuration will
+</span><span class="comment">-- be updated as follows (assuming the current axis position is 5012).
+</span><span class="comment">-- [XAxisNamedPositions]
+</span><span class="comment">-- SlideLoad=5012</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SetNamedDistance"></a>
+    <strong>SetNamedDistance (namedDistance, distance[, distanceMustExist=true])</strong>
+    </dt>
+    <dd>
+    Update the distance associated with a named distance. </p>
+
+<p> The new distance will be persisted to the local (instrument-specific) configuration.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namedDistance</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The name of the distance to update.
+        </li>
+        <li><span class="parameter">distance</span>
+            <span class="types"><span class="type">number</span></span>
+         The new distance to associate with the named distance.
+        </li>
+        <li><span class="parameter">distanceMustExist</span>
+            <span class="types"><span class="type">bool</span></span>
+         true will cause an error to be thrown if the named distance doesn't already exist, false will allow a new named distance to be added.
+         (<em>default</em> true)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Named positions need to be specified in configuration as follows:
+</span><span class="comment">-- [XAxis_Device]
+</span><span class="comment">-- Type=AxisDevice
+</span><span class="comment">-- NamedDistances=XAxisNamedDistances
+</span><span class="comment">--
+</span><span class="comment">-- [XAxisNamedDistances]
+</span><span class="comment">-- MoveOutOfHome=10000
+</span><span class="comment">-- HomingDistance=-70000
+</span><span class="comment">-- ParkOffset=500
+</span>
+<span class="comment">-- Update the named distance to a new value
+</span>XAxis.SetNamedDistance(<span class="string">"ParkOffset"</span>, <span class="number">503</span>)
+XAxis.Wait()
+
+<span class="comment">-- After the above call to SetNamedDistance, the local configuration will
+</span><span class="comment">-- be updated as follows:
+</span><span class="comment">-- [XAxisNamedDistances]
+</span><span class="comment">-- ParkOffset=503</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SetCommandedPositionAsNamedPosition"></a>
+    <strong>SetCommandedPositionAsNamedPosition (namedPosition[, positionMustExist=true])</strong>
+    </dt>
+    <dd>
+    Update the coordinate associated with a named position to the current axis position. </p>
+
+<p> The new coordinate will be persisted to the local (instrument-specific) configuration.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namedPosition</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The name of the position to update.
+        </li>
+        <li><span class="parameter">positionMustExist</span>
+            <span class="types"><span class="type">bool</span></span>
+         true will cause an error to be thrown if the named position doesn't already exist, false will allow a new named position to be added.
+         (<em>default</em> true)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Named positions need to be specified in configuration as follows:
+</span><span class="comment">-- [XAxis_Device]
+</span><span class="comment">-- Type=AxisDevice
+</span><span class="comment">-- NamedPositions=XAxisNamedPositions
+</span><span class="comment">--
+</span><span class="comment">-- [XAxisNamedPositions]
+</span><span class="comment">-- Home=100
+</span><span class="comment">-- SlideLoad=5000
+</span>
+<span class="comment">-- Update the named position to the current axis position.
+</span>XAxis.SetCommandedPositionAsNamedPosition(<span class="string">"SlideLoad"</span>)
+XAxis.Wait()
+
+<span class="comment">-- After the above call to SetCommandedPositionAsNamedPosition, the local
+</span><span class="comment">-- configuration will be updated as follows (assuming the current axis
+</span><span class="comment">-- position is 5012).
+</span><span class="comment">-- [XAxisNamedPositions]
+</span><span class="comment">-- SlideLoad=5012</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SetNamedMoveProfile"></a>
+    <strong>SetNamedMoveProfile (namedMoveProfile, moveProfile[, moveProfileMustExist=true])</strong>
+    </dt>
+    <dd>
+    Update the Acceleration, Deceleration, Velocity and Jerk of a specified named profile. </p>
+
+<p> All move profiles regardless of which was update will be persisted to the local (instrument-specific) configuration.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namedMoveProfile</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The named profile to update.
+        </li>
+        <li><span class="parameter">moveProfile</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         A table of key,value pairs containing the new profile settings. All settings must be specified.
+        </li>
+        <li><span class="parameter">moveProfileMustExist</span>
+            <span class="types"><span class="type">bool</span></span>
+         true will cause an error to be thrown if the named profile doesn't already exist, false will allow a new named profile to be added.
+         (<em>default</em> true)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Move profiles need to be specified in configuration as follows:
+</span><span class="comment">-- [XAxis_Device]
+</span><span class="comment">-- Type=AxisDevice
+</span><span class="comment">-- NamedMoveProfiles=XAxisHomingProfile,XAxisMoveProfile
+</span><span class="comment">--
+</span><span class="comment">-- [XAxisHomingProfile]
+</span><span class="comment">-- Acceleration=2000000
+</span><span class="comment">-- Deceleration=2000000
+</span><span class="comment">-- Velocity=1000
+</span><span class="comment">-- Jerk=0
+</span><span class="comment">--
+</span><span class="comment">-- [XAxisMoveProfile]
+</span><span class="comment">-- Acceleration=2000000
+</span><span class="comment">-- Deceleration=2000000
+</span><span class="comment">-- Velocity=25000
+</span><span class="comment">-- Jerk=0
+</span>
+<span class="comment">-- Update the values in a named move profile.
+</span><span class="keyword">local</span> homeProfile = {
+    Acceleration = <span class="number">1500000</span>,
+    Deceleration = <span class="number">1750000</span>,
+    Velocity = <span class="number">1000</span>,
+    Jerk = <span class="number">0</span>
+}
+XAxis.SetNamedMoveProfile(<span class="string">"XAxisHomingProfile"</span>, homeProfile)
+XAxis.Wait()
+
+<span class="comment">-- After the above call to SetNamedMoveProfile, the local configuration
+</span><span class="comment">-- will be updated as follows. Note that all move profiles are written to
+</span><span class="comment">-- local configuration, regardless of whether they are updated.
+</span>
+<span class="comment">-- [XAxisHomingProfile]
+</span><span class="comment">-- Acceleration=1500000
+</span><span class="comment">-- Deceleration=1750000
+</span><span class="comment">-- Jerk=0
+</span><span class="comment">-- Velocity=1000
+</span>
+<span class="comment">-- [XAxisMoveProfile]
+</span><span class="comment">-- Acceleration=2000000
+</span><span class="comment">-- Deceleration=2000000
+</span><span class="comment">-- Jerk=0
+</span><span class="comment">-- Velocity=1000</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Enable"></a>
+    <strong>Enable ()</strong>
+    </dt>
+    <dd>
+    Enable / energize the axis motor. </p>
+
+<p> This will restore power to the axis motor (after Disable() has been called) so it can be commanded to move.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Enable the axis.
+</span>XAxis.Enable()
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Disable"></a>
+    <strong>Disable ()</strong>
+    </dt>
+    <dd>
+    Disable / de-energize the axis motor. </p>
+
+<p> This will remove power from the axis so it can be moved manually.
+ If an encoder is present, it will continue to update as the axis is manually moved.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Disable the axis.
+</span>XAxis.Disable()
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SetExternalControl"></a>
+    <strong>SetExternalControl (moveDistancePerPulse)</strong>
+    </dt>
+    <dd>
+    Enable / disable control of the axis via an external pulse signal. </p>
+
+<p> When using this feature with a SmartStageXY or SmartStageLinear, the GpioConfiguration in Instrument.cfg must be set to PMDGpioConfiguration::S1.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">moveDistancePerPulse</span>
+            <span class="types"><span class="type">number</span></span>
+         Move the axis by this amount in selected units (mm, um, or nm)
+ per positive pulse signal and by the negative amount per negative pulse signal. Setting this value to zero will disable external control.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Enable external control
+</span><span class="keyword">local</span> moveDistancePerPulse = <span class="number">1</span>
+XAxis.SetExternalControl(moveDistancePerPulse)
+XAxis.Wait()
+
+<span class="comment">-- Disable external control
+</span>XAxis.SetExternalControl(<span class="number">0</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "EnableTraceCapture"></a>
+    <strong>EnableTraceCapture (traceTrigger, period, variables)</strong>
+    </dt>
+    <dd>
+    Enable capture of trace data. </p>
+
+<p> If the trigger is 'OnMotionStart', trace capture will be automatically started when the next move begins and stopped once the move completes.
+ If the trigger is 'OnMotionStartNoEnd', trace capture will be automatically started when the next move begins and must be stopped by calling StopTraceCapture().
+ If the trigger is 'Immediate', trace capture will be started immediately and must be stopped by calling StopTraceCapture().
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">traceTrigger</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Trigger to start the trace capture (e.g. 'Immediate', 'OnMotionStart' or 'OnMotionStartNoEnd').
+        </li>
+        <li><span class="parameter">period</span>
+            <span class="types"><span class="type">integer</span></span>
+         Period at which the data is sampled in terms of the motion chip cycles (e.g. 1 = every cycle).
+        </li>
+        <li><span class="parameter">variables</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         A list of variables to capture. Up to 4 variables can be captured.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> traceVariables = {<span class="string">"CommandedVelocity"</span>, <span class="string">"PositionError"</span>, <span class="string">"CommandedPosition"</span>}
+XAxis.EnableTraceCapture(<span class="string">"OnMotionStart"</span>, <span class="number">10</span>, traceVariables)
+XAxis.Wait()
+
+XAxis.MoveRelative(<span class="number">1</span>)
+XAxis.Wait()
+
+XAxis.SaveTraceCapture(<span class="string">"[ProgramDataFolder]/trace1.csv"</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NEnableTraceCapture"></a>
+    <strong>NEnableTraceCapture (traceTrigger, traceProfile)</strong>
+    </dt>
+    <dd>
+    Enable capture of trace data using a named trace profile defined in configuration. </p>
+
+<p> If the trigger is 'OnMotionStart', trace capture will be automatically started when the next move begins and stopped once the move completes.
+ If the trigger is 'OnMotionStartNoEnd', trace capture will be automatically started when the next move begins and must be stopped by calling StopTraceCapture().
+ If the trigger is 'Immediate', trace capture will be started immediately and must be stopped by calling StopTraceCapture().
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">traceTrigger</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Trigger to start the trace capture (e.g. 'Immediate', 'OnMotionStart' or 'OnMotionStartNoEnd').
+        </li>
+        <li><span class="parameter">traceProfile</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The name of the trace profile section defined in configuration. This profile will specify the period and up to 4 trace variables.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">XAxis.NEnableTraceCapture(<span class="string">"OnMotionStart"</span>, <span class="string">"CommandedVelocityTraceProfile"</span>)
+XAxis.Wait()
+
+XAxis.MoveRelative(<span class="number">2</span>)
+XAxis.Wait()
+
+XAxis.SaveTraceCapture(<span class="string">"[ProgramDataFolder]/trace2.csv"</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "StopTraceCapture"></a>
+    <strong>StopTraceCapture ()</strong>
+    </dt>
+    <dd>
+    Stop the capture of trace data.  This will stop any trace capture currently in progress.</p>
+
+<p> If the trigger supplied to EnableTraceCapture() was OnMotionStart or OnMotionStartNoEnd and a move has not started,
+ this will cancel the request to capture trace data on the next move.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">XAxis.NEnableTraceCapture(<span class="string">"Immediate"</span>, <span class="string">"CommandedVelocityTraceProfile"</span>)
+XAxis.Wait()
+
+<span class="comment">-- Wait a couple seconds
+</span>clock.sleep_ms(<span class="number">2000</span>)
+
+XAxis.StopTraceCapture()
+XAxis.Wait()
+
+XAxis.SaveTraceCapture(<span class="string">"[ProgramDataFolder]/trace2.csv"</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SaveTraceCapture"></a>
+    <strong>SaveTraceCapture (pathname)</strong>
+    </dt>
+    <dd>
+    Save the trace data captured during the last move (see EnableTraceCapture() and NEnableTraceCapture()) as a csv file.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">pathname</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the file to save the data to.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">XAxis.NEnableTraceCapture(<span class="string">"CommandedVelocityTraceProfile"</span>)
+XAxis.Wait()
+
+XAxis.MoveRelative(<span class="number">2</span>)
+XAxis.Wait()
+
+XAxis.SaveTraceCapture(<span class="string">"[ProgramDataFolder]/trace2.csv"</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "EnableTriggerOnPosition"></a>
+    <strong>EnableTriggerOnPosition (startPosition, endPosition, increment, isBidirectional, pulseWidthNs)</strong>
+    </dt>
+    <dd>
+    Enable trigger on position (TOP).  TOP will generate a GPIO pulse every 'increment' of travel while in the window specified by
+  'startPosition' and 'endPosition'.</p>
+
+<p> When using this feature with a SmartStageXY or SmartStageLinear, the GpioConfiguration in Instrument.cfg must be set to PMDGpioConfiguration::S2 (the default).
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">startPosition</span>
+            <span class="types"><span class="type">number</span></span>
+         Position at which to start generating pulses in selected units (mm, um, or nm).
+        </li>
+        <li><span class="parameter">endPosition</span>
+            <span class="types"><span class="type">number</span></span>
+         Position at which to stop generating pulses in selected units (mm, um, or nm).
+        </li>
+        <li><span class="parameter">increment</span>
+            <span class="types"><span class="type">number</span></span>
+         Generate a pulse every 'increment' of travel in selected units (mm, um, or nm).
+        </li>
+        <li><span class="parameter">isBidirectional</span>
+            <span class="types"><span class="type">boolean</span></span>
+         If true, pulses will also be generated when moving from endPosition back to startPosition. If false, pulses will only be generated when moving from startPosition to endPosition.
+        </li>
+        <li><span class="parameter">pulseWidthNs</span>
+            <span class="types"><span class="type">number</span></span>
+         The width of the pulse to generate at each position in nanoseconds.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">XAxis.NMoveAbsolute(<span class="string">"NegativeLimit"</span>)
+XAxis.Wait()
+
+XAxis.EnableTriggerOnPosition(<span class="number">5</span>, <span class="number">10</span>, <span class="number">0.1</span>, <span class="keyword">false</span>, <span class="number">100000</span>)
+XAxis.Wait()
+
+<span class="keyword">local</span> isEnabled = XAxis.IsTriggerOnPositionEnabled
+<span class="global">assert</span>(isEnabled)
+
+XAxis.MoveRelative(<span class="number">20</span>)
+XAxis.Wait()
+
+XAxis.DisableTriggerOnPosition()
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NEnableTriggerOnPosition"></a>
+    <strong>NEnableTriggerOnPosition (startPositionName, endPositionName, namedDistance, isBidirectional, pulseWidthNs)</strong>
+    </dt>
+    <dd>
+    Enable trigger on position (TOP).  TOP will generate a GPIO pulse every 'increment' of travel while in the window specified by
+  'startPosition' and 'endPosition'.</p>
+
+<p> When using this feature with a SmartStageXY or SmartStageLinear, the GpioConfiguration in Instrument.cfg must be set to PMDGpioConfiguration::S2 (the default).
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">startPositionName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Named position at which to start generating pulses.
+        </li>
+        <li><span class="parameter">endPositionName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Named position at which to stop generating pulses.
+        </li>
+        <li><span class="parameter">namedDistance</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Generate a pulse every 'namedDistance' of travel.
+        </li>
+        <li><span class="parameter">isBidirectional</span>
+            <span class="types"><span class="type">boolean</span></span>
+         If true, pulses will also be generated when moving from endPosition back to startPosition. If false, pulses will only be generated when moving from startPosition to endPosition.
+        </li>
+        <li><span class="parameter">pulseWidthNs</span>
+            <span class="types"><span class="type">integer</span></span>
+         The width of the pulse to generate at each position in nanoseconds. The actual pulse width is a value rounded to the nearest practicable value, which must be a multiple of 50ns and less or equal to 204,800 ns. It's ignored by version 1.2 and lower of the PMD motion control firmware.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">XAxis.NMoveAbsolute(<span class="string">"NegativeLimit"</span>)
+XAxis.Wait()
+
+XAxis.NEnableTriggerOnPosition(<span class="string">"NegativeLimit"</span>, <span class="string">"PositiveLimit"</span>, <span class="string">"OffLimitMove"</span>, <span class="keyword">true</span>, <span class="number">100000</span>)
+XAxis.Wait()
+
+<span class="keyword">local</span> isEnabled = XAxis.IsTriggerOnPositionEnabled
+<span class="global">assert</span>(isEnabled)
+
+XAxis.NMoveAbsolute(<span class="string">"PositiveLimit"</span>)
+XAxis.Wait()
+
+XAxis.DisableTriggerOnPosition()
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "DisableTriggerOnPosition"></a>
+    <strong>DisableTriggerOnPosition ()</strong>
+    </dt>
+    <dd>
+    Disable trigger on position (TOP).
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Disable trigger on position
+</span>XAxis.DisableTriggerOnPosition()
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SetDigitalOutputTrigger"></a>
+    <strong>SetDigitalOutputTrigger (trigger)</strong>
+    </dt>
+    <dd>
+
+<p>Enable / disable a digital output (AxisOut1) trigger based on the axis motion. </p>
+
+<p> When using this feature with a SmartStageXY or SmartStageLinear, the GpioConfiguration in Instrument.cfg must be set to PMDGpioConfiguration::S2 (the default).</p>
+
+<p> Possible triggers include:</p>
+<pre><code> Disabled         - Digital output is set low and triggers are disabled (i.e. the digital output state is not affected by the axis state).
+ InMotion         - The digital output will be set high whenever the axis is in motion.
+ MotionComplete   - The digital output will be set high whenever the axis completes a move.
+ AtMaxVelocity    - The digital output will be set high when the axis reaches maximum velocity during its move.
+ Immediate        - The digital output will be set high immediately (i.e. the digital output is directly controlled by software).
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">trigger</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Specifies a trigger (see above) on which to set the digital output.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> clock = <span class="global">require</span> <span class="string">'lua_clock'</span>
+
+<span class="comment">-- Enable a digital output trigger that will set the digital output (AxisOut1) high whenever axis motion completes.
+</span>XAxis.SetDigitalOutputTrigger(<span class="string">"MotionComplete"</span>)
+XAxis.Wait()
+
+<span class="comment">-- Perform a 2mm move. The digital output will be set when the move completes.
+</span>XAxis.MoveRelative(<span class="number">2</span>);
+XAxis.Wait()
+<span class="comment">-- Disable the digital output trigger.
+</span>XAxis.SetDigitalOutputTrigger(<span class="string">"Disabled"</span>)
+XAxis.Wait()
+
+<span class="comment">-- Turn on the digital output immediately
+</span>XAxis.SetDigitalOutputTrigger(<span class="string">"Immediate"</span>)
+XAxis.Wait()
+
+<span class="comment">-- Wait a couple seconds
+</span>clock.sleep_ms(<span class="number">2000</span>)
+
+<span class="comment">-- Disable the digital output trigger.
+</span>XAxis.SetDigitalOutputTrigger(<span class="string">"Disabled"</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Name"></a>
+    <strong>Name</strong>
+    </dt>
+    <dd>
+    Name of the device.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Type"></a>
+    <strong>Type</strong>
+    </dt>
+    <dd>
+    Type of the device.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "IsActionInProgress"></a>
+    <strong>IsActionInProgress</strong>
+    </dt>
+    <dd>
+    Action progress state of the device.
+ True if an action is in progress, false if idle.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">IsActionInProgress</span>
+            <span class="types"><span class="type">bool</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">if</span> Device.IsActionInProgress <span class="keyword">then</span>
+    Device.Wait()
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "IsConnected"></a>
+    <strong>IsConnected</strong>
+    </dt>
+    <dd>
+    Connected state of the device.
+ True if the device is successfully connected to hardware, false if not.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">IsConnected</span>
+            <span class="types"><span class="type">bool</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">if</span> Device.IsConnected <span class="keyword">then</span>
+    Device.Initialize()
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "HaveAttemptedConnect"></a>
+    <strong>HaveAttemptedConnect</strong>
+    </dt>
+    <dd>
+    Was a connection to the device attempted?
+ True if an attempt was made to connect to the hardware, false if not.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">HaveAttemptedConnect</span>
+            <span class="types"><span class="type">bool</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">if</span> Device.HaveAttemptedConnect <span class="keyword">then</span>
+    Device.Initialize()
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "ActualPosition"></a>
+    <strong>ActualPosition</strong>
+    </dt>
+    <dd>
+    Get the actual position of the axis as reported by the encoder.
+ On successful completion of a move, the actual position will match the commanded position (within the axis resolution).
+ If the move failed (e.g. a position error occurred), the actual position will not match the commanded position.
+ The commanded position will be set to the actual position when:
+ * A move is interrupted due to a Stop or EStop command being issued.
+ * While the axis is disabled and when the Enable command is issued to transition the axis from the disabled to enabled state.</p>
+
+<p> Units are in (mm, um, or nm).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">ActualPosition</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> actualPosition = XAxis.ActualPosition</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "TargetPosition"></a>
+    <strong>TargetPosition</strong>
+    </dt>
+    <dd>
+    Get the position the axis was commanded to move to.
+ On successful completion of a move, the actual position will match the commanded position (within the axis resolution).
+ If the move failed (e.g. a position error occurred), the actual position will not match the commanded position.
+ The commanded position will be set to the actual position when:
+ * A move is interrupted due to a Stop or EStop command being issued.
+ * While the axis is disabled and when the Enable command is issued to transition the axis from the disabled to enabled state.</p>
+
+<p> Units are in (mm, um, or nm).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">TargetPosition</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> targetPosition = XAxis.TargetPosition</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "PositionError"></a>
+    <strong>PositionError</strong>
+    </dt>
+    <dd>
+    Get the current axis position error.
+ This is the difference between the commanded (target) position and the actual position.</p>
+
+<p> Units are in (mm, um, or nm).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">PositionError</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> positionError = XAxis.PositionError</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Velocity"></a>
+    <strong>Velocity</strong>
+    </dt>
+    <dd>
+    The maximum velocity that will be used for axis moves. </p>
+
+<p> Units are in (mm/s, um/s, or nm/s).
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         Writes must be followed up with a call to <a href="#Wait">Wait</a>. (Not required for reads.)
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Velocity</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#SelectMoveProfile">SelectMoveProfile</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> currentVelocity = XAxis.Velocity
+
+XAxis.Velocity = <span class="number">10000</span>
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Acceleration"></a>
+    <strong>Acceleration</strong>
+    </dt>
+    <dd>
+    The maximum acceleration that will be used for axis moves. </p>
+
+<p> Units are in (mm/s^2, um/s^2, or nm/s^2).
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         Writes must be followed up with a call to <a href="#Wait">Wait</a>. (Not required for reads.)
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Acceleration</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#SelectMoveProfile">SelectMoveProfile</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> currentAcceleration = XAxis.Acceleration
+
+XAxis.Acceleration = <span class="number">10000</span>
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Jerk"></a>
+    <strong>Jerk</strong>
+    </dt>
+    <dd>
+    The maximum jerk that will be used for axis moves. </p>
+
+<p> Units are in (mm/s^3, um/s^3, or nm/s^3).
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         Writes must be followed up with a call to <a href="#Wait">Wait</a>. (Not required for reads.)
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Jerk</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#SelectMoveProfile">SelectMoveProfile</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> currentJerk = XAxis.Jerk
+
+XAxis.Jerk = <span class="number">50000</span>
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Deceleration"></a>
+    <strong>Deceleration</strong>
+    </dt>
+    <dd>
+    The maximum deceleration that will be used for axis moves. </p>
+
+<p> Units are in (mm/s^2, um/s^2, or nm/s^2).
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         Writes must be followed up with a call to <a href="#Wait">Wait</a>. (Not required for reads.)
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Deceleration</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/AxisDevice.html#SelectMoveProfile">SelectMoveProfile</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> currentDeceleration = XAxis.Deceleration
+
+XAxis.Deceleration = <span class="number">10000</span>
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NamedPositions"></a>
+    <strong>NamedPositions</strong>
+    </dt>
+    <dd>
+    Returns a table of named positions for this axis. </p>
+
+<p> The keys of the table are the position names and the values are the
+ absolute positions in (mm, um, or nm).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">NamedPositions</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- For this named position configuration in the instrument configuration:
+</span><span class="comment">-- [XAxis_Device]
+</span><span class="comment">-- Type=AxisDevice
+</span><span class="comment">-- NamedPositions=XAxisNamedPositions
+</span><span class="comment">--
+</span><span class="comment">-- [XAxisNamedPositions]
+</span><span class="comment">-- Home=100
+</span><span class="comment">-- SlideLoad=5000
+</span>
+<span class="comment">-- Retrieve the table of named positions.
+</span><span class="keyword">local</span> namedPositions = XAxis.NamedPositions
+<span class="comment">-- The structure of the namedPositions table will be:
+</span><span class="comment">-- {
+</span><span class="comment">--     Home = 100
+</span><span class="comment">--     SlideLoad = 5000,
+</span><span class="comment">-- }
+</span>
+<span class="comment">-- The positions can be iterated through with pairs().
+</span>log.info(<span class="string">"XAxis Named Positions:"</span>)
+<span class="keyword">for</span> positionName, positionValue <span class="keyword">in</span> <span class="global">pairs</span>(namedPositions) <span class="keyword">do</span>
+    log.info(positionName .. <span class="string">": "</span> .. <span class="global">tostring</span>(positionValue))
+<span class="keyword">end</span>
+
+<span class="comment">-- The output with the above configuration would be (iteration order not
+</span><span class="comment">-- guaranteed):
+</span><span class="comment">-- XAxis Named Positions:
+</span><span class="comment">-- Home: 100
+</span><span class="comment">-- SlideLoad: 5000</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NamedDistances"></a>
+    <strong>NamedDistances</strong>
+    </dt>
+    <dd>
+    Returns a table of named distances for this axis. </p>
+
+<p> The keys of the table are the distance names and the values are the
+ distances in (mm, um, or nm).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">NamedDistances</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- For this named distance configuration in the instrument configuration:
+</span><span class="comment">-- [XAxis_Device]
+</span><span class="comment">-- Type=AxisDevice
+</span><span class="comment">-- NamedDistances=XAxisNamedDistances
+</span><span class="comment">--
+</span><span class="comment">-- [XAxisNamedDistances]
+</span><span class="comment">-- MoveOutOfHome=10000
+</span><span class="comment">-- HomingDistance=-70000
+</span><span class="comment">-- ParkOffset=500
+</span>
+<span class="comment">-- Retrieve the table of named distances.
+</span><span class="keyword">local</span> namedDistances = XAxis.NamedDistances
+<span class="comment">-- The structure of the namedDistances table will be:
+</span><span class="comment">-- {
+</span><span class="comment">--     MoveOutOfHome = 10000
+</span><span class="comment">--     HomingDistance = -70000,
+</span><span class="comment">--     ParkOffset = 500,
+</span><span class="comment">-- }
+</span>
+<span class="comment">-- The distances can be iterated through with pairs().
+</span>log.info(<span class="string">"XAxis Named Distances:"</span>)
+<span class="keyword">for</span> distanceName, distanceValue <span class="keyword">in</span> <span class="global">pairs</span>(namedDistances) <span class="keyword">do</span>
+    log.info(distanceName .. <span class="string">": "</span> .. <span class="global">tostring</span>(distanceValue))
+<span class="keyword">end</span>
+
+<span class="comment">-- The output with the above configuration would be (iteration order not
+</span><span class="comment">-- guaranteed):
+</span><span class="comment">-- XAxis Named Distances:
+</span><span class="comment">-- MoveOutOfHome: 10000
+</span><span class="comment">-- HomingDistance: -70000
+</span><span class="comment">-- ParkOffset: 500</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NamedFlags"></a>
+    <strong>NamedFlags</strong>
+    </dt>
+    <dd>
+    Returns a table of named flags for this axis  The keys of the table are the flag names and the values are the flag indices.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">NamedFlags</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- For this flag configuration in the instrument configuration:
+</span><span class="comment">-- [XAxis_Device]
+</span><span class="comment">-- Type=AxisDevice
+</span><span class="comment">-- NamedFlags=XAxisNamedFlags
+</span><span class="comment">--
+</span><span class="comment">-- [XAxisNamedFlags]
+</span><span class="comment">-- LeftReferenceSwitch=0
+</span><span class="comment">-- ReferenceSwitch=1
+</span>
+<span class="comment">-- Retrieve the table of named flags.
+</span><span class="keyword">local</span> namedFlags = XAxis.NamedFlags
+<span class="comment">-- The structure of the namedFlags table will be:
+</span><span class="comment">-- {
+</span><span class="comment">--     LeftReferenceSwitch = 0,
+</span><span class="comment">--     RightReferenceSwitch = 1,
+</span><span class="comment">-- }
+</span>
+<span class="comment">-- The flags can be iterated through with pairs().
+</span>log.info(<span class="string">"XAxis Named Flags:"</span>)
+<span class="keyword">for</span> flagName, flagNumber <span class="keyword">in</span> <span class="global">pairs</span>(namedFlags) <span class="keyword">do</span>
+    log.info(flagName .. <span class="string">": "</span> .. <span class="global">tostring</span>(flagNumber))
+<span class="keyword">end</span>
+
+<span class="comment">-- The output with the above configuration would be (iteration order not
+</span><span class="comment">-- guaranteed):
+</span><span class="comment">-- XAxis Named Flags:
+</span><span class="comment">-- LeftReferenceSwitch: 0
+</span><span class="comment">-- RightReferenceSwitch: 1</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "NamedMoveProfiles"></a>
+    <strong>NamedMoveProfiles</strong>
+    </dt>
+    <dd>
+    Returns a table of move profiles for this axis. </p>
+
+<p> The keys of the table are the position names and the values are a a table
+ with all the parameters of that move profile.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">NamedMoveProfiles</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- For this move profile configuration in the instrument configuration:
+</span><span class="comment">-- [XAxis_Device]
+</span><span class="comment">-- Type=AxisDevice
+</span><span class="comment">-- NamedMoveProfiles=XAxisHomingProfile,XAxisMoveProfile
+</span><span class="comment">--
+</span><span class="comment">-- [XAxisHomingProfile]
+</span><span class="comment">-- Acceleration=2000000
+</span><span class="comment">-- Deceleration=2000000
+</span><span class="comment">-- Velocity=1000
+</span><span class="comment">-- Jerk=0
+</span>      <span class="comment">--
+</span><span class="comment">-- [XAxisMoveProfile]
+</span><span class="comment">-- Acceleration=2000000
+</span><span class="comment">-- Deceleration=2000000
+</span><span class="comment">-- Velocity=25000
+</span><span class="comment">-- Jerk=0
+</span>
+<span class="comment">-- Retrieve the table of move profiles.
+</span><span class="keyword">local</span> moveProfiles = XAxis.NamedMoveProfiles
+<span class="comment">-- The structure of the moveProfiles table will be:
+</span><span class="comment">-- {
+</span><span class="comment">--     XAxisHomingProfile = {
+</span><span class="comment">--         Acceleration = 2000000,
+</span><span class="comment">--         Deceleration = 2000000,
+</span><span class="comment">--         Velocity = 1000,
+</span><span class="comment">--         Jerk = 0,
+</span><span class="comment">--     },
+</span><span class="comment">--     XAxisMoveProfile = {
+</span><span class="comment">--         Acceleration = 2000000,
+</span><span class="comment">--         Deceleration = 2000000,
+</span><span class="comment">--         Velocity = 25000,
+</span><span class="comment">--         Jerk = 0,
+</span><span class="comment">--     },
+</span><span class="comment">-- }
+</span>
+<span class="comment">-- The profiles can be iterated through with pairs() (note the nested loops).
+</span>log.info(<span class="string">"XAxis Move Profiles:"</span>)
+<span class="keyword">for</span> profileName, profile <span class="keyword">in</span> <span class="global">pairs</span>(moveProfiles) <span class="keyword">do</span>
+    log.info(<span class="string">"  "</span> .. profileName .. <span class="string">":"</span>)
+    <span class="keyword">for</span> paramName, param <span class="keyword">in</span> <span class="global">pairs</span>(profile) <span class="keyword">do</span>
+        log.info(<span class="string">"    "</span> .. paramName .. <span class="string">": "</span> .. <span class="global">tostring</span>(param))
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment">-- The output with the above configuration would be (iteration order not
+</span><span class="comment">-- guaranteed):
+</span><span class="comment">-- XAxis Move Profiles:
+</span><span class="comment">--   XAxisHomingProfile:
+</span><span class="comment">--     Acceleration: 2000000
+</span><span class="comment">--     Deceleration: 2000000
+</span><span class="comment">--     Velocity: 1000
+</span><span class="comment">--     Jerk: 0
+</span><span class="comment">--   XAxisMoveProfile:
+</span><span class="comment">--     Acceleration: 2000000
+</span><span class="comment">--     Deceleration: 2000000
+</span><span class="comment">--     Velocity: 25000
+</span><span class="comment">--     Jerk: 0</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "IsEnabled"></a>
+    <strong>IsEnabled</strong>
+    </dt>
+    <dd>
+    Get the enabled (energized) / disabled (de-energized) state the axis motor. </p>
+
+<p> true if enabled (energized), false if disabled (de-energized).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">IsEnabled</span>
+            <span class="types"><span class="type">boolean</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isAxisEnabled = XAxis.IsEnabled</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "ExternalControl"></a>
+    <strong>ExternalControl</strong>
+    </dt>
+    <dd>
+    Get the currently configured move distance per pulse. </p>
+
+<p> Units are in (mm, um, or nm). Zero indicates external control is disabled,
+ a non-zero value indicates external control is enabled.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">ExternalControl</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> moveDistancePerPulse = XAxis.ExternalControl</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "IsTraceCaptureEnabled"></a>
+    <strong>IsTraceCaptureEnabled</strong>
+    </dt>
+    <dd>
+    Is trace capture enabled for the next axis move?  Does not detect immediate trace capture.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">IsTraceCaptureEnabled</span>
+            <span class="types"><span class="type">boolean</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isTraceCaptureEnabled = XAxis.IsTraceCaptureEnabled</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "IsTriggerOnPositionEnabled"></a>
+    <strong>IsTriggerOnPositionEnabled</strong>
+    </dt>
+    <dd>
+    Get the state of the trigger on position (TOP) function.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">IsTriggerOnPositionEnabled</span>
+            <span class="types"><span class="type">boolean</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> isTriggerOnPositionEnabled = XAxis.IsTriggerOnPositionEnabled</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "DigitalOutputTrigger"></a>
+    <strong>DigitalOutputTrigger</strong>
+    </dt>
+    <dd>
+    Get the digital output trigger in effect.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">DigitalOutputTrigger</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> trigger = XAxis.DigitalOutputTrigger</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "MotorCurrent"></a>
+    <strong>MotorCurrent</strong>
+    </dt>
+    <dd>
+    Get the RMS current being used to drive the motor at this instant.
+ Due to communication latency with the motor drive chip, the value returned will be lagging.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">MotorCurrent</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> motorCurrent = XAxis.MotorCurrent</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "MotionControllerConfiguration"></a>
+    <strong>MotionControllerConfiguration</strong>
+    </dt>
+    <dd>
+    Get the current motion controller configuration.
+ This provides access to the configuration settings of the motion controller.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">MotionControllerConfiguration</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> config = XAxis.MotionControllerConfiguration</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "UserDefinedProfile"></a>
+    <strong>UserDefinedProfile</strong>
+    </dt>
+    <dd>
+    Get the user defined profile for this axis.
+ This provides access to the user defined profile handler.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">UserDefinedProfile</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> profile = XAxis.UserDefinedProfile</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

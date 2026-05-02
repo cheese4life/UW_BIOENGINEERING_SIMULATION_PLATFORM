@@ -1,0 +1,487 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
+</ul>
+
+
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><strong>Status</strong></li>
+</ul>
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="../devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="../devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><a href="../devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lua_alerts.html">lua_alerts</a></li>
+  <li><a href="../modules/lua_config.html">lua_config</a></li>
+  <li><a href="../modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><a href="../modules/lua_logger.html">lua_logger</a></li>
+  <li><a href="../modules/lua_clock.html">lua_clock</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Globalobject <code>Status</code></h1>
+<p>Provides access to the script Status object used to control the abort behaviour of a script
+ and return results at the end of script execution.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#Set">Set</a></td>
+    <td class="summary">Set an output parameter.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Get">Get</a></td>
+    <td class="summary">Get an output parameter.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Abort">Abort</a></td>
+    <td class="summary">Abort the currently executing script.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#MarkScriptAsAborted">MarkScriptAsAborted <i>[deprecated]</i></a></td>
+    <td class="summary">Set the result status of the script to <code>ScriptExecutionState::ABORTED</code>.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#PreventAbort">PreventAbort</a></td>
+    <td class="summary">Begin a 'transaction' to prevent the script aborting until the transaction completes.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#EndPreventAbort">EndPreventAbort</a></td>
+    <td class="summary">End the current 'transaction', allowing the script to be aborted.</td>
+    </tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#AbortHandler">AbortHandler</a></td>
+    <td class="summary">Set a function to be called when a script is aborted.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#ShouldAbort">ShouldAbort</a></td>
+    <td class="summary">Returns a flag indicating if Abort has been called on this script.</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Set"></a>
+    <strong>Set (key, value)</strong>
+    </dt>
+    <dd>
+    Set an output parameter. </p>
+
+<p> These parameters can be accessed by application code once the script completes.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The name of the out parameter.
+        </li>
+        <li><span class="parameter">value</span>
+         The value of the out parameter to set. This can be an integer, number or string.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../globalobjects/Status.html#Get">Get</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">Status.Set(<span class="string">"FocusFeatureResult"</span>, <span class="global">tostring</span>(<span class="keyword">false</span>))</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Get"></a>
+    <strong>Get (key)</strong>
+    </dt>
+    <dd>
+    Get an output parameter.  The output parameter must have previously been set with <a href="../globalobjects/Status.html#Set">Set</a>.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The name of the out parameter.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        value The value of the out parameter.
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../globalobjects/Status.html#Set">Set</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> focusFeatureResult = Status.Get(<span class="string">"FocusFeatureResult"</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Abort"></a>
+    <strong>Abort (abortType)</strong>
+    </dt>
+    <dd>
+    Abort the currently executing script. </p>
+
+<p> Two abort types are possible. A <code>&apos;Controlled&apos;</code> abort will not exit the script until the current transaction (if in progress) completes.
+ A <code>&apos;Forced&apos;</code> abort will exit the script immediately, regardless of whether a transaction is in progress.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">abortType</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <code>&apos;Controlled&apos;</code> or <code>&apos;Forced&apos;</code>.
+        </li>
+    </ul>
+
+
+    <h3>Raises:</h3>
+    An error is raised if the abortType is not valid.
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Request a controlled abort be performed. This will not exit the script
+</span><span class="comment">-- until the transaction completes. A 'Forced' abort will abort the
+</span><span class="comment">-- script immediately.
+</span>Status.Abort(<span class="string">'Controlled'</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "MarkScriptAsAborted"></a>
+    <strong>MarkScriptAsAborted () <i>[deprecated]</i></strong>
+    </dt>
+    <dd>
+    Set the result status of the script to <code>ScriptExecutionState::ABORTED</code>.
+
+    </ul>
+    <h3>This function has been deprecated:</h3>
+    <ul>
+         Use <a href="../globalobjects/Status.html#Abort">Abort</a> instead; it will set the result status to
+ <code>ScriptExecutionState::ABORTED</code> and provides more control.
+    </ul>
+    </ul>
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../globalobjects/Status.html#Abort">Abort</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "PreventAbort"></a>
+    <strong>PreventAbort (transactionName)</strong>
+    </dt>
+    <dd>
+    Begin a 'transaction' to prevent the script aborting until the transaction completes. </p>
+
+<p> While a transaction is active, any script <em>controlled</em> abort request (externally
+ from application code or by calling <a href="../globalobjects/Status.html#Abort">Abort</a>) will still set the abort
+ flag in the script executor, but the executor will not actually abort
+ the script until the transaction is completed.</p>
+
+<p> Forced aborts will abort the script even if a transaction is in progress (see <a href="../globalobjects/Status.html#Abort">Abort</a>).</p>
+
+<p> Call <a href="../globalobjects/Status.html#EndPreventAbort">EndPreventAbort</a> to end the transaction, allowing the script to be aborted again.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">transactionName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         A name for the transaction. This is passed
+ to the abort handler (see <a href="../globalobjects/Status.html#AbortHandler">AbortHandler</a>) if an abort is requested during the transaction.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../globalobjects/Status.html#EndPreventAbort">EndPreventAbort</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Start a transaction which prevents a controlled abort from terminating
+</span><span class="comment">-- the script while inside the transaction. Each transaction has a name.
+</span>Status.PreventAbort(<span class="string">'Axis Moves'</span>)
+
+<span class="comment">-- Move an axis to a position.
+</span>XAxis.MoveAbsolute(<span class="number">500</span>)
+XAxis.Wait()
+
+<span class="comment">-- The transaction allows the axis home to complete before the script is aborted.
+</span>XAxis.Home()
+XAxis.Wait()
+
+<span class="comment">-- Complete the transaction. This will allows the script to abort from
+</span><span class="comment">-- this point on.
+</span>Status.EndPreventAbort()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "EndPreventAbort"></a>
+    <strong>EndPreventAbort ()</strong>
+    </dt>
+    <dd>
+    End the current 'transaction', allowing the script to be aborted.  If a
+ controlled abort has been requested during the transaction, the script
+ will abort immediately once this is called.
+
+    </ul>
+    </ul>
+    </ul>
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../globalobjects/Status.html#PreventAbort">PreventAbort</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Start a transaction which prevents a controlled abort from terminating
+</span><span class="comment">-- the script while inside the transaction. Each transaction has a name.
+</span>Status.PreventAbort(<span class="string">'Axis Moves'</span>)
+
+<span class="comment">-- Move an axis to a position.
+</span>XAxis.MoveAbsolute(<span class="number">500</span>)
+XAxis.Wait()
+
+<span class="comment">-- The transaction allows the axis home to complete before the script is aborted.
+</span>XAxis.Home()
+XAxis.Wait()
+
+<span class="comment">-- Complete the transaction. This will allows the script to abort from
+</span><span class="comment">-- this point on.
+</span>Status.EndPreventAbort()</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AbortHandler"></a>
+    <strong>AbortHandler</strong>
+    </dt>
+    <dd>
+    Set a function to be called when a script is aborted. </p>
+
+<p> Set this property to the <em>name</em> of the abort handler function in the
+ global environment (not the function itself). When an abort occurs,
+ after the running script is aborted, the abort handler will be looked up
+ in the global environment of the script and run.</p>
+
+<p> The function to be called takes a single string parameter which is
+ the name of the last transaction. This may be an empty string if
+ transactions have not been used.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">AbortHandler</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+
+<span class="comment">-- This function will be called if the script is aborted. It allows the
+</span><span class="comment">-- script to perform some clean up operations.
+</span><span class="comment">-- If the script was aborted during a transaction, the last transaction name
+</span><span class="comment">-- will be passed to the script to provide some context.
+</span><span class="keyword">function</span> onAbort(lastTransactionName)
+   log.info(<span class="string">"Last transaction = '"</span> .. lastTransactionName .. <span class="string">"'."</span>)
+   XAxis.Home()
+   XAxis.Wait()
+<span class="keyword">end</span>
+
+<span class="comment">-- Register an abort handler. Note the abort handler is assigned the name
+</span><span class="comment">-- of the function in the global environment, not the function itself.
+</span>Status.AbortHandler = <span class="string">'onAbort'</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "ShouldAbort"></a>
+    <strong>ShouldAbort</strong>
+    </dt>
+    <dd>
+    Returns a flag indicating if Abort has been called on this script.  This allows
+ code within a transaction to determine if abort has been called.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">ShouldAbort</span>
+            <span class="types"><span class="type">boolean</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Start a transaction which prevents a controlled abort from terminating
+</span><span class="comment">-- the script while inside the transaction. Each transaction has a name.
+</span>Status.PreventAbort(<span class="string">'Axis Moves'</span>)
+
+<span class="comment">-- Move an axis to a position.
+</span>XAxis.MoveAbsolute(<span class="number">500</span>)
+XAxis.Wait()
+
+<span class="comment">-- Don't home the X Axis if the script has been aborted.
+</span><span class="keyword">if</span> <span class="keyword">not</span> Status.ShouldAbort <span class="keyword">then</span>
+  XAxis.Home()
+  XAxis.Wait()
+<span class="keyword">end</span>
+
+<span class="comment">-- Complete the transaction. This will allows the script to abort from
+</span><span class="comment">-- this point on.
+</span>Status.EndPreventAbort()</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

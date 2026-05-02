@@ -1,0 +1,343 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lua_alerts.html">lua_alerts</a></li>
+  <li><a href="../modules/lua_config.html">lua_config</a></li>
+  <li><strong>lua_filesystem</strong></li>
+  <li><a href="../modules/lua_logger.html">lua_logger</a></li>
+  <li><a href="../modules/lua_clock.html">lua_clock</a></li>
+</ul>
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="../globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="../devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="../devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><a href="../devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>lua_filesystem</code></h1>
+<p>Provides a limited set of functions for accessing the filesystem.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#dir">dir</a></td>
+    <td class="summary">Returns a table containing a directory listing.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#direxists">direxists</a></td>
+    <td class="summary">Checks for the existence of a directory.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#filename">filename</a></td>
+    <td class="summary">Returns a string containing the filename from a given filepath.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#extension">extension</a></td>
+    <td class="summary">Returns a string containing the file extension from a given filepath.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#resolvepathname">resolvepathname</a></td>
+    <td class="summary">Parses a pathname by replacing any template items with their runtime paths.</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "dir"></a>
+    <strong>dir (directoryPath)</strong>
+    </dt>
+    <dd>
+    Returns a table containing a directory listing.  If the directory path is invalid, an error is generated.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">directoryPath</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the directory.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        A table (ie. a list of strings) of directory entries.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+<span class="keyword">local</span> filesystem = <span class="global">require</span> <span class="string">'lua_filesystem'</span>
+
+<span class="comment">-- Retrieve the contents of the current working directory.
+</span><span class="keyword">local</span> dirListing = filesystem.dir(<span class="string">'.'</span>)
+<span class="keyword">local</span> maxFilesToDisplay = <span class="number">5</span>
+
+log.info(<span class="string">'Displaying the first '</span> .. maxFilesToDisplay .. <span class="string">' of '</span>
+  .. #dirListing .. <span class="string">' files.'</span>)
+
+<span class="keyword">for</span> i,filename <span class="keyword">in</span> <span class="global">pairs</span>(dirListing) <span class="keyword">do</span>
+  log.info(filename)
+  maxFilesToDisplay = maxFilesToDisplay - <span class="number">1</span>
+  <span class="keyword">if</span> maxFilesToDisplay == <span class="number">0</span> <span class="keyword">then</span>
+    <span class="keyword">break</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "direxists"></a>
+    <strong>direxists (directoryPath)</strong>
+    </dt>
+    <dd>
+    Checks for the existence of a directory.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">directoryPath</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The path to the directory.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Returns true if the directory exists, false if not.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+<span class="keyword">local</span> filesystem = <span class="global">require</span> <span class="string">'lua_filesystem'</span>
+
+<span class="comment">-- Check if a directory exists.
+</span><span class="keyword">local</span> directoryName = <span class="string">[[C:\Temp]]</span>
+<span class="keyword">local</span> doesDirectoryExist = filesystem.dir(directoryName)
+
+log.info(<span class="string">'Directory '</span> .. directoryName .. <span class="string">' exists: '</span> .. doesDirectoryExist .. <span class="string">'.'</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "filename"></a>
+    <strong>filename (pathname)</strong>
+    </dt>
+    <dd>
+    Returns a string containing the filename from a given filepath.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">pathname</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         A full pathname which includes directories and a filename.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        The filename part of a path, including the filename extension.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> filesystem = <span class="global">require</span> <span class="string">'lua_filesystem'</span>
+
+<span class="keyword">local</span> pathname = <span class="string">[[C:\Program Files\CompanyName\Application\Instrument.cfg]]</span>
+<span class="keyword">local</span> filename = filesystem.filename(pathname)
+<span class="comment">-- filename contains "Instrument.cfg"</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "extension"></a>
+    <strong>extension (pathname)</strong>
+    </dt>
+    <dd>
+    Returns a string containing the file extension from a given filepath.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">pathname</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         A full pathname which includes directories and a filename.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        The extension part of the filename.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> filesystem = <span class="global">require</span> <span class="string">'lua_filesystem'</span>
+
+<span class="keyword">local</span> pathname = <span class="string">[[C:\Program Files\CompanyName\Application\Instrument.cfg]]</span>
+<span class="keyword">local</span> extension = filesystem.extension(pathname)
+<span class="comment">-- extension contains ".cfg"</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "resolvepathname"></a>
+    <strong>resolvepathname (pathname)</strong>
+    </dt>
+    <dd>
+    Parses a pathname by replacing any template items with their runtime paths.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">pathname</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         A full pathname which includes template items.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        A fully resolved pathname which has its template item replaced with a real pathname.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> filesystem = <span class="global">require</span> <span class="string">'lua_filesystem'</span>
+
+<span class="comment">-- Path resolution is specific to how the application is set up.
+</span><span class="comment">-- For this example, assume the application sets up [SupportFolder] to
+</span><span class="comment">-- the path "C:\IMPApplication\SupportFolder"
+</span><span class="keyword">local</span> pathname = <span class="string">[[[SupportFolder]\Instrument.cfg]]</span>
+<span class="keyword">local</span> resolvedPathname = filesystem.resolvepathname(pathname)
+<span class="comment">-- this returns "C:\IMPApplication\SupportFolder\Instrument.cfg"</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

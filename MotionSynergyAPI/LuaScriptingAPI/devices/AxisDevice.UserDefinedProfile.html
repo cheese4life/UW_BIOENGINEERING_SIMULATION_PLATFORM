@@ -1,0 +1,290 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
+</ul>
+
+
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="../devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><strong>AxisDevice.UserDefinedProfile</strong></li>
+  <li><a href="../devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="../globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lua_alerts.html">lua_alerts</a></li>
+  <li><a href="../modules/lua_config.html">lua_config</a></li>
+  <li><a href="../modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><a href="../modules/lua_logger.html">lua_logger</a></li>
+  <li><a href="../modules/lua_clock.html">lua_clock</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Device <code>AxisDevice.UserDefinedProfile</code></h1>
+<p>An interface for performing User Defined Profile (UDP) moves and updating the associated user defined profile data.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#MoveRelativeUDP">MoveRelativeUDP</a></td>
+    <td class="summary">Move axis using the currently selected time-based UDP profile.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#UpdateProfileData">UpdateProfileData</a></td>
+    <td class="summary">Update a single position at the specified index in the currently selected user defined profile.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SelectSineWaveMoveProfile">SelectSineWaveMoveProfile</a></td>
+    <td class="summary">Select the sine wave UDP profile and setup to be ready for a relative UDP move.</td>
+    </tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#CurrentDataStreamIndex">CurrentDataStreamIndex</a></td>
+    <td class="summary">Get the current data stream index being used by the motion controller to calculate the target position of the axis during a UDP move.</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "MoveRelativeUDP"></a>
+    <strong>MoveRelativeUDP (repeats)</strong>
+    </dt>
+    <dd>
+    Move axis using the currently selected time-based UDP profile.
+  A time-based UDP profile must have first been selected by calling SelectMoveProfile().
+  If a time-based UDP profile is not active, this method will return an error.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">repeats</span>
+            <span class="types"><span class="type">unsigned</span></span>
+         The number of repetitions of the move to perform.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Perform user defined move 5 times
+</span>XAxis.UserDefinedProfile.MoveRelativeUDP(<span class="number">5</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "UpdateProfileData"></a>
+    <strong>UpdateProfileData (index, position)</strong>
+    </dt>
+    <dd>
+    Update a single position at the specified index in the currently selected user defined profile.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">index</span>
+            <span class="types"><span class="type">unsigned</span></span>
+
+<pre><code>   Zero-based index into the profile data array.
+</code></pre>
+
+        </li>
+        <li><span class="parameter">position</span>
+            <span class="types"><span class="type">number</span></span>
+
+<pre><code>The new position in selected units (mm, um, or nm) to write to this index in the profile data array.
+</code></pre>
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">XAxis.UserDefinedProfile.UpdateProfileData(<span class="number">2</span>, <span class="number">5.5</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SelectSineWaveMoveProfile"></a>
+    <strong>SelectSineWaveMoveProfile (frequencyHz, amplitude, angularAcceleration)</strong>
+    </dt>
+    <dd>
+    Select the sine wave UDP profile and setup to be ready for a relative UDP move.
+ Note that setting a parameter too high can cause a device error.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">frequencyHz</span>
+            <span class="types"><span class="type">number</span></span>
+           The frequency of the sine wave in Hz.
+        </li>
+        <li><span class="parameter">amplitude</span>
+            <span class="types"><span class="type">number</span></span>
+
+<pre><code> The amplitude of the sine wave in selected units (mm, um, or nm).
+</code></pre>
+
+        </li>
+        <li><span class="parameter">angularAcceleration</span>
+            <span class="types"><span class="type">number</span></span>
+          The angular acceleration in Hz per sec.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">XAxis.UserDefinedProfile.SelectSineWaveMoveProfile(<span class="number">2.0</span>, <span class="number">5</span>, <span class="number">1000</span>)
+XAxis.Wait()</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "CurrentDataStreamIndex"></a>
+    <strong>CurrentDataStreamIndex</strong>
+    </dt>
+    <dd>
+    Get the current data stream index being used by the motion controller to calculate the target position of the axis during a UDP move.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">CurrentDataStreamIndex</span>
+            <span class="types"><span class="type">unsigned</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> currentDataStreamIndex = XAxis.UserDefinedProfile.CurrentDataStreamIndex</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

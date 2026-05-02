@@ -1,0 +1,13 @@
+{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Biquad Filters\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 A biquad is a generic digital filter structure. With the proper coefficients, it can be programmed to be a low-pass filter, high-pass filter, band-pass filter, notch filter, or custom filter.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 A good rule of thumb is to shoot for a servo bandwidth no higher than half of the frequency of the notch filter. In practical terms this means not setting a low-pass or notch filter below ~500 Hz.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 The controller supports two programmable biquad output filters for each axis. These filters are chained. When both are enabled, the output of Filter1 feeds the input of Filter2. If Filter1 is disabled (the default state), the entire filter chain is bypassed, and the motion control IC output passes unfiltered to the motor.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 To turn off the filter(s) select {\i None} in the drop down box. If {\i Unknown} is shown in the drop down box, the filter type that corresponds to the coefficient values entered cannot be determined. To create a Low Pass filter, enter the target cutoff frequency and quality factor. The low-pass filter will attenuate the response above the cutoff frequency. To create a Notch filter, enter the center frequency and quality factor.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 See the {\i Motion Synergy API User Manual} for more details on when to use filters and how they operate.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Once applied, these settings may be stored in the motion controller's NVRAM so they persist across power cycles.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Note, the axis will be de-energized before the changes are written to NVRAM.\par}
+}

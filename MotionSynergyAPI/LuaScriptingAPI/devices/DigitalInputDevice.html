@@ -1,0 +1,874 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
+</ul>
+
+
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="../devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="../devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><strong>DigitalInputDevice</strong></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="../globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lua_alerts.html">lua_alerts</a></li>
+  <li><a href="../modules/lua_config.html">lua_config</a></li>
+  <li><a href="../modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><a href="../modules/lua_logger.html">lua_logger</a></li>
+  <li><a href="../modules/lua_clock.html">lua_clock</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Device <code>DigitalInputDevice</code></h1>
+<p>A device for reading binary inputs (0 = LOW or 1 = HIGH) from one or more digital input pins.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#Connect">Connect</a></td>
+    <td class="summary">Establish a connection to the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Initialize">Initialize</a></td>
+    <td class="summary">Initialize the device and makes it ready for use.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Wait">Wait</a></td>
+    <td class="summary">Wait for the previous asynchronous action on this device to complete.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Shutdown">Shutdown</a></td>
+    <td class="summary">Shutdown the device in preparation for power off.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#EStop">EStop</a></td>
+    <td class="summary">Perform an emergency stop of the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#EStopWait">EStopWait</a></td>
+    <td class="summary">Wait for the previous EStop to complete.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#EnableAsynchChangeUpdates">EnableAsynchChangeUpdates</a></td>
+    <td class="summary">Enable notification of digital input changes.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#DisableAsynchChangeUpdates">DisableAsynchChangeUpdates</a></td>
+    <td class="summary">Disable notification of digital input changes.</td>
+    </tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#Name">Name</a></td>
+    <td class="summary">Name of the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Type">Type</a></td>
+    <td class="summary">Type of the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#IsActionInProgress">IsActionInProgress</a></td>
+    <td class="summary">Action progress state of the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#IsConnected">IsConnected</a></td>
+    <td class="summary">Connected state of the device.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#HaveAttemptedConnect">HaveAttemptedConnect</a></td>
+    <td class="summary">Was a connection to the device attempted?</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Register">Register</a></td>
+    <td class="summary">One byte value representing the state of all 8 bits.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Input0">Input0</a></td>
+    <td class="summary">Input bit 0 state.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Input1">Input1</a></td>
+    <td class="summary">Input bit 1 state.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Input2">Input2</a></td>
+    <td class="summary">Input bit 2 state (not used).</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Input3">Input3</a></td>
+    <td class="summary">Input bit 3 state (not used).</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Input4">Input4</a></td>
+    <td class="summary">Input bit 4 state (not used).</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Input5">Input5</a></td>
+    <td class="summary">Input bit 5 state (not used).</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Input6">Input6</a></td>
+    <td class="summary">Input bit 6 state (not used).</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#Input7">Input7</a></td>
+    <td class="summary">Input bit 7 state (not used).</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Connect"></a>
+    <strong>Connect ()</strong>
+    </dt>
+    <dd>
+    Establish a connection to the device.
+
+    </ul>
+    </ul>
+    </ul>
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Initialize"></a>
+    <strong>Initialize ()</strong>
+    </dt>
+    <dd>
+
+<p>Initialize the device and makes it ready for use. </p>
+
+<p> This function does not need a <code>Wait</code> call after it - this function blocks until the device is initialized.</p>
+
+<p> In the case of an axis this involves:</p>
+
+<ul>
+    <li>Establishing a connection to the hardware.</li>
+    <li>Performing Analog Calibration.</li>
+    <li>Performing Commutation.</li>
+</ul>
+
+
+
+    </ul>
+    </ul>
+    </ul>
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Wait"></a>
+    <strong>Wait ([timeout_ms=DefaultTimeout_ms])</strong>
+    </dt>
+    <dd>
+    Wait for the previous asynchronous action on this device to complete. </p>
+
+<p> Each device can have only one action in progress at a time - starting another
+ action while one is already in progress raises an error. <code>Wait</code> waits for
+ the currently-running action to finish before returning, or checks the last
+ action's status if it has already completed. After <code>Wait</code> returns, another
+ action can be started.</p>
+
+<p> Changes to device settings are also asynchronous, and require <code>Wait</code> to be called to block
+ until the setting has actually been set.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">timeout_ms</span>
+            <span class="types"><span class="type">int</span></span>
+         The length of time to wait from when this function is called before raising a timeout error.
+         (<em>default</em> DefaultTimeout_ms)
+        </li>
+    </ul>
+
+
+    <h3>Raises:</h3>
+    An error is raised if the timeout expires before the action completes, the previous asynchronous action was EStopped or if the action or setting change being waited on fails for any other reason.
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">Device.PerformAction()
+
+<span class="comment">-- The function above returns immediately, but the action is still in progress.
+</span><span class="comment">-- We can call Wait() to block until the action is actually finished.
+</span>Device.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Shutdown"></a>
+    <strong>Shutdown ()</strong>
+    </dt>
+    <dd>
+    Shutdown the device in preparation for power off.  Once a device has been shutdown, it will accept no further commands.
+ If there is a connection associated with this device and this is the last device using the connection, the connection will be closed.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">Device.Shutdown()
+Device.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "EStop"></a>
+    <strong>EStop ()</strong>
+    </dt>
+    <dd>
+    Perform an emergency stop of the device.  This will immediately halt any motion (e.g. an abrupt stop will be
+ performed for an axis device) and return the device to a safe, passive state (e.g. for an axis device this means the operating mode is set to disable the axis, motor output, current control, position loop, and trajectory).
+ The next call to Wait() on this device will raise an error, indicating the device has been EStopped and the
+ command in progress was interrupted.
+ Alternatively, EStopWait() can be called to wait for the estop to complete without throwing an exception.
+ Initialize() must be called on this device before it will accept further commands.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#EStopWait">EStopWait</a>.
+    </ul>
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/BaseDevice.html#EStopWait">EStopWait</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">Device.EStop()
+Device.EStopWait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "EStopWait"></a>
+    <strong>EStopWait ([timeout_ms=DefaultTimeout_ms])</strong>
+    </dt>
+    <dd>
+    Wait for the previous EStop to complete.  Does not raise an error if the EStop was successful.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">timeout_ms</span>
+            <span class="types"><span class="type">int</span></span>
+         The length of time to wait before raising a timeout error.
+         (<em>default</em> DefaultTimeout_ms)
+        </li>
+    </ul>
+
+
+    <h3>Raises:</h3>
+    An error is raised if the timeout expires before the EStop completes.
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/BaseDevice.html#EStop">EStop</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">Device.EStop()
+Device.EStopWait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "EnableAsynchChangeUpdates"></a>
+    <strong>EnableAsynchChangeUpdates ()</strong>
+    </dt>
+    <dd>
+    Enable notification of digital input changes. </p>
+
+<p> Change notification is disabled by default. This function must be called for application code
+ that subscribe to the change notification to receive the notification when the digital input
+ changes.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DisableAsynchChangeUpdates"></a>
+    <strong>DisableAsynchChangeUpdates ()</strong>
+    </dt>
+    <dd>
+    Disable notification of digital input changes. </p>
+
+<p> When disabled, the application subscribers will not be notified of any changes to the digital
+ input values.
+
+    </ul>
+    </ul>
+    <h3>Async:</h3>
+    <ul>
+         This function call is asynchronous and must be followed up with a call to <a href="#Wait">Wait</a>.
+    </ul>
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Name"></a>
+    <strong>Name</strong>
+    </dt>
+    <dd>
+    Name of the device.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Type"></a>
+    <strong>Type</strong>
+    </dt>
+    <dd>
+    Type of the device.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "IsActionInProgress"></a>
+    <strong>IsActionInProgress</strong>
+    </dt>
+    <dd>
+    Action progress state of the device.
+ True if an action is in progress, false if idle.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">IsActionInProgress</span>
+            <span class="types"><span class="type">bool</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">if</span> Device.IsActionInProgress <span class="keyword">then</span>
+    Device.Wait()
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "IsConnected"></a>
+    <strong>IsConnected</strong>
+    </dt>
+    <dd>
+    Connected state of the device.
+ True if the device is successfully connected to hardware, false if not.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">IsConnected</span>
+            <span class="types"><span class="type">bool</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">if</span> Device.IsConnected <span class="keyword">then</span>
+    Device.Initialize()
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "HaveAttemptedConnect"></a>
+    <strong>HaveAttemptedConnect</strong>
+    </dt>
+    <dd>
+    Was a connection to the device attempted?
+ True if an attempt was made to connect to the hardware, false if not.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">HaveAttemptedConnect</span>
+            <span class="types"><span class="type">bool</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">if</span> Device.HaveAttemptedConnect <span class="keyword">then</span>
+    Device.Initialize()
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Register"></a>
+    <strong>Register</strong>
+    </dt>
+    <dd>
+    One byte value representing the state of all 8 bits. </p>
+
+<p> Bit 0 is the least significant bit and bit 7 is the most significant bit. For example, if
+ only bit 1 and bit 5 are HIGH, then the integer returned will be equal to 0010'0010 in
+ binary, or 0x22 in hexadecimal, or 34 in decimal.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Register</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- read current digital input values
+</span><span class="keyword">local</span> register = DigitalInput.Register</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Input0"></a>
+    <strong>Input0</strong>
+    </dt>
+    <dd>
+    Input bit 0 state. </p>
+
+<p> Bit state fields return an integer value of 0 or 1.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Input0</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- read current bit value
+</span><span class="keyword">local</span> bit = DigitalInput.Input0</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Input1"></a>
+    <strong>Input1</strong>
+    </dt>
+    <dd>
+    Input bit 1 state.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Input1</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/DigitalInputDevice.html#Input0">Input0</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "Input2"></a>
+    <strong>Input2</strong>
+    </dt>
+    <dd>
+    Input bit 2 state (not used).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Input2</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/DigitalInputDevice.html#Input0">Input0</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "Input3"></a>
+    <strong>Input3</strong>
+    </dt>
+    <dd>
+    Input bit 3 state (not used).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Input3</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/DigitalInputDevice.html#Input0">Input0</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "Input4"></a>
+    <strong>Input4</strong>
+    </dt>
+    <dd>
+    Input bit 4 state (not used).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Input4</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/DigitalInputDevice.html#Input0">Input0</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "Input5"></a>
+    <strong>Input5</strong>
+    </dt>
+    <dd>
+    Input bit 5 state (not used).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Input5</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/DigitalInputDevice.html#Input0">Input0</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "Input6"></a>
+    <strong>Input6</strong>
+    </dt>
+    <dd>
+    Input bit 6 state (not used).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Input6</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/DigitalInputDevice.html#Input0">Input0</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "Input7"></a>
+    <strong>Input7</strong>
+    </dt>
+    <dd>
+    Input bit 7 state (not used).
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Input7</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../devices/DigitalInputDevice.html#Input0">Input0</a>
+    </ul>
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

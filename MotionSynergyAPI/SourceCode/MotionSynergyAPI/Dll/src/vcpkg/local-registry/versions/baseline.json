@@ -1,0 +1,8 @@
+{
+    "default": {
+        "luainterpreter": {
+        "baseline": "5.4.6",
+        "port-version": 0
+        }
+    }
+}

@@ -1,0 +1,184 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+
+
+
+
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><a href="devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="modules/lua_alerts.html">lua_alerts</a></li>
+  <li><a href="modules/lua_config.html">lua_config</a></li>
+  <li><a href="modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><a href="modules/lua_logger.html">lua_logger</a></li>
+  <li><a href="modules/lua_clock.html">lua_clock</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+  <h2>Motion Synergy Lua API Documentation</h2>
+  <p>This is the documentation for the Lua scripting interface provided by Motion Synergy.</i></p>
+
+<ul>
+    <li><strong>Modules</strong> are modules/libraries for common services that can be imported using <code>require()</code>.</li>
+    <li><strong>Global Objects</strong> are objects that are injected into the global environment of every script execution.</li>
+    <li><strong>Devices</strong> are descriptions of the interfaces for various types of devices. The actual device instances that will be
+    present are defined in the instrument configuration, and they are injected into the global environment of every script
+    execution.</li>
+    <li><strong>Emulated Drivers</strong> are descriptions of the emulated driver interfaces of emulated devices. Emulated drivers are
+    used to alter the behavior of emulated devices by modifying driver responses and internal states. The actual emulated
+    driver instances that will be present are defined in the instrument configuration, and they are injected into the global
+    environment of every script execution, if the device is configured to use its emulated driver.</li>
+</ul>
+
+<p>See the <strong>scriptsreadme</strong> topic for a general description of how to structure lua scripts.</p>
+
+<h2>GlobalObjects</h2>
+<table class="module_list">
+    <tr>
+        <td class="name"  nowrap><a href="globalobjects/Status.html">Status</a></td>
+        <td class="summary">Provides access to the script Status object used to control the abort behaviour of a script
+ and return results at the end of script execution.</td>
+    </tr>
+</table>
+<h2>Devices</h2>
+<table class="module_list">
+    <tr>
+        <td class="name"  nowrap><a href="devices/AxisDevice.html">AxisDevice</a></td>
+        <td class="summary">A single axis of a motion control system (linear axis motors, rotary axis motors).</td>
+    </tr>
+    <tr>
+        <td class="name"  nowrap><a href="devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></td>
+        <td class="summary">An interface for reading and modifying Motion Controller Configuration.</td>
+    </tr>
+    <tr>
+        <td class="name"  nowrap><a href="devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></td>
+        <td class="summary">An interface for performing User Defined Profile (UDP) moves and updating the associated user defined profile data.</td>
+    </tr>
+    <tr>
+        <td class="name"  nowrap><a href="devices/DigitalInputDevice.html">DigitalInputDevice</a></td>
+        <td class="summary">A device for reading binary inputs (0 = LOW or 1 = HIGH) from one or more digital input pins.</td>
+    </tr>
+    <tr>
+        <td class="name"  nowrap><a href="devices/BaseDevice.html">BaseDevice</a></td>
+        <td class="summary">Base functions and properties that all devices have (not a real device itself).</td>
+    </tr>
+</table>
+<h2>EmulatedDrivers</h2>
+<table class="module_list">
+    <tr>
+        <td class="name"  nowrap><a href="emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></td>
+        <td class="summary">Base function and properties that all emulated drivers have (not a real driver itself).</td>
+    </tr>
+    <tr>
+        <td class="name"  nowrap><a href="emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></td>
+        <td class="summary">Emulated driver of <a href="devices/AxisDevice.html#">AxisDevice</a>.</td>
+    </tr>
+    <tr>
+        <td class="name"  nowrap><a href="emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></td>
+        <td class="summary">Emulated driver of <a href="devices/DigitalInputDevice.html#">DigitalInputDevice</a>.</td>
+    </tr>
+</table>
+<h2>Modules</h2>
+<table class="module_list">
+    <tr>
+        <td class="name"  nowrap><a href="modules/lua_alerts.html">lua_alerts</a></td>
+        <td class="summary">Provides the ability for a script to raise and clear alerts.</td>
+    </tr>
+    <tr>
+        <td class="name"  nowrap><a href="modules/lua_config.html">lua_config</a></td>
+        <td class="summary">Provides access to the configuration system for retrieving settings from and writing settings to configuration.</td>
+    </tr>
+    <tr>
+        <td class="name"  nowrap><a href="modules/lua_filesystem.html">lua_filesystem</a></td>
+        <td class="summary">Provides a limited set of functions for accessing the filesystem.</td>
+    </tr>
+    <tr>
+        <td class="name"  nowrap><a href="modules/lua_logger.html">lua_logger</a></td>
+        <td class="summary">Provides access to the logging system to allow logging of diagnostic information.</td>
+    </tr>
+    <tr>
+        <td class="name"  nowrap><a href="modules/lua_clock.html">lua_clock</a></td>
+        <td class="summary">Provides access to a monotonically incrementing time source not affected by
+ changes to the wall clock due to daylight saving transitions,
+ NTP time source adjustments, or user changes to the time or timezone.</td>
+    </tr>
+</table>
+<h2>Topics</h2>
+<table class="module_list">
+    <tr>
+        <td class="name"  nowrap><a href="topics/ScriptsReadme.md.html">ScriptsReadme.md</a></td>
+        <td class="summary"></td>
+    </tr>
+</table>
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lua_alerts.html">lua_alerts</a></li>
+  <li><a href="../modules/lua_config.html">lua_config</a></li>
+  <li><a href="../modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><strong>lua_logger</strong></li>
+  <li><a href="../modules/lua_clock.html">lua_clock</a></li>
+</ul>
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="../globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="../devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="../devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><a href="../devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>lua_logger</code></h1>
+<p>Provides access to the logging system to allow logging of diagnostic information.</p>
+<p> Messages logged using this module go through the IMP logger infrastructure on the channel <code>LuaScripting</code>.</p>
+
+<p> The log.trace(), log.debug(), log.info(), log.warning(), log.error() and log.fatal() functions record the
+ source location (i.e. filename,line number) in the script where they were invoked. They each take a second
+ optional parameter 'functionLevel' which is used to specify the function on the stack to record.
+ The default is functionLevel=1, which will record the source location of the call to the log.<em>() function
+ itself. If a script wraps a log.</em>() function in a custom logging function, then it is more useful
+ to log the source location of the call to the custom logging function. To do this, functionLevel can be set
+ to the next function up in the stack (i.e. functionLevel=2).</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#trace">trace</a></td>
+    <td class="summary">Log an entry at 'Trace' level.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#debug">debug</a></td>
+    <td class="summary">Log an entry at 'Debug' level.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#info">info</a></td>
+    <td class="summary">Log an entry at 'Info' level.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#warning">warning</a></td>
+    <td class="summary">Log an entry at 'Warning' level.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#error">error</a></td>
+    <td class="summary">Log an entry at 'Error' level.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#fatal">fatal</a></td>
+    <td class="summary">Log an entry at 'Fatal' level.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#func">func</a></td>
+    <td class="summary">Log the current function's name and provided arguments.</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "trace"></a>
+    <strong>trace (message[, functionLevel=1])</strong>
+    </dt>
+    <dd>
+    Log an entry at 'Trace' level.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The message to log.
+        </li>
+        <li><span class="parameter">functionLevel</span>
+            <span class="types"><span class="type">int</span></span>
+         Used to specify the function at which the source code location is recorded (see the module description for details).
+         (<em>default</em> 1)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+log.trace(<span class="string">'Very detailed logging information.'</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "debug"></a>
+    <strong>debug (message[, functionLevel=1])</strong>
+    </dt>
+    <dd>
+    Log an entry at 'Debug' level.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The message to log.
+        </li>
+        <li><span class="parameter">functionLevel</span>
+            <span class="types"><span class="type">int</span></span>
+         Used to specify the function at which the source code location is recorded (see the module description for details).
+         (<em>default</em> 1)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+log.<span class="global">debug</span>(<span class="string">'Standard developer level logging information.'</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "info"></a>
+    <strong>info (message[, functionLevel=1])</strong>
+    </dt>
+    <dd>
+    Log an entry at 'Info' level.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The message to log.
+        </li>
+        <li><span class="parameter">functionLevel</span>
+            <span class="types"><span class="type">int</span></span>
+         Used to specify the function at which the source code location is recorded (see the module description for details).
+         (<em>default</em> 1)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+log.info(<span class="string">'Information useful to the end user.'</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "warning"></a>
+    <strong>warning (message[, functionLevel=1])</strong>
+    </dt>
+    <dd>
+    Log an entry at 'Warning' level.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The message to log.
+        </li>
+        <li><span class="parameter">functionLevel</span>
+            <span class="types"><span class="type">int</span></span>
+         Used to specify the function at which the source code location is recorded (see the module description for details).
+         (<em>default</em> 1)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+log.warning(<span class="string">'Warning that something is not quite right or expected but the '</span>
+  .. <span class="string">'workflow can continue.'</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "error"></a>
+    <strong>error (message[, functionLevel=1])</strong>
+    </dt>
+    <dd>
+    Log an entry at 'Error' level.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The message to log.
+        </li>
+        <li><span class="parameter">functionLevel</span>
+            <span class="types"><span class="type">int</span></span>
+         Used to specify the function at which the source code location is recorded (see the module description for details).
+         (<em>default</em> 1)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+log.<span class="global">error</span>(<span class="string">'An error has occurred, the workflow will terminate and the '</span>
+  .. <span class="string">'instrument will go into the Error state.'</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "fatal"></a>
+    <strong>fatal (message[, functionLevel=1])</strong>
+    </dt>
+    <dd>
+    Log an entry at 'Fatal' level.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The message to log.
+        </li>
+        <li><span class="parameter">functionLevel</span>
+            <span class="types"><span class="type">int</span></span>
+         Used to specify the function at which the source code location is recorded (see the module description for details).
+         (<em>default</em> 1)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+log.fatal(<span class="string">'A fatal error has occurred, the workflow will terminate and the '</span>
+  .. <span class="string">'application will need to be restarted.'</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "func"></a>
+    <strong>func (...)</strong>
+    </dt>
+    <dd>
+    Log the current function's name and provided arguments.  Must be called from inside a function.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+            <span class="types"><span class="type">arguments</span></span>
+         Can be provided any number of arguments to log, including 0. These can be any type including nil.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> log = <span class="global">require</span> <span class="string">'lua_logger'</span>
+
+<span class="keyword">function</span> Example(arg1, arg2)
+    log.func(arg1, arg2)
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> VariadicExample(...)
+    log.func(...)
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> NoArgumentsExample()
+    log.func()
+<span class="keyword">end</span>
+
+<span class="comment">-- The following calls will result in one log line each.
+</span>Example(<span class="number">1</span>, <span class="string">"test"</span>)
+VariadicExample(<span class="keyword">true</span>, <span class="keyword">false</span>)
+NoArgumentsExample()</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

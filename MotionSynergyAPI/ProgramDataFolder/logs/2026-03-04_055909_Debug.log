@@ -1,0 +1,65 @@
+2026-03-04 05:59:09.009233 [0x00007fbea19ff160] [Info   ] Logging started, using configuration at: "/home/anton/MotionSynergyAPI/SupportFolder/Logger.cfg" [Logger] []
+2026-03-04 05:59:09.009324 [0x00007fbea19ff160] [Info   ] 
+
+Log Configuration : ./SupportFolder/Logger.cfg
+Events Configuration: ./SupportFolder/Events.cfg
+
+ [MotionSynergyAPI] [MotionSynergyAPICore.cpp,116]
+2026-03-04 05:59:09.009789 [0x00007fbea19ff160] [Info   ] 
+
+Default Configuration     : ./SupportFolder/Instrument.cfg
+Local   Configuration     : ./ProgramDataFolder/Instrument.local.cfg
+
+ [MotionSynergyAPI] [MotionSynergyAPICore.cpp,159]
+2026-03-04 05:59:09.011393 [0x00007fbea19ff160] [Info   ] 
+
+===============================================================================
+Application Version        : 1.0
+Motion Synergy API Version : 4.0.16063
+Branch                     : master
+===============================================================================
+
+ [MotionSynergyAPI] [MotionSynergyAPICore.cpp,186]
+2026-03-04 05:59:09.018939 [0x00007fbe9987f160] [Info   ] [Initialize] Initializing all axes [Script] [LogWrapper.lua,51]
+2026-03-04 05:59:09.019078 [0x00007fbe9987f160] [Info   ] [HomeXAxis] Initializing X Axis [Script] [LogWrapper.lua,51]
+2026-03-04 05:59:09.360389 [0x00007fbe9987f160] [Info   ] [HomeXAxis] X Axis initialization complete [Script] [LogWrapper.lua,51]
+2026-03-04 05:59:09.360448 [0x00007fbe9987f160] [Info   ] [Initialize] Initialization complete [Script] [LogWrapper.lua,51]
+2026-03-04 05:59:09.360477 [0x00007fbe9987f160] [Info   ] [Initialize] Homing all axes [Script] [LogWrapper.lua,51]
+2026-03-04 05:59:09.360498 [0x00007fbe9987f160] [Info   ] [HomeXAxis] Homing X Axis [Script] [LogWrapper.lua,51]
+2026-03-04 05:59:09.461149 [0x00007fbe9987f160] [Error  ]    
+-------------- Error --------------
+./SupportFolder/Scripts/XAxis.lua:52: Exception: Could not find named value 'PositiveHalf'!
+Type: std::runtime_error
+File: /home/sysadmin/buildAgent/work/b663454bb0afd0d5/DoverMotion/MotionSynergyAPI/Impl/native/Devices/AxisDevice/include/AxisDevice.h
+Line: 224
+Function: T imp::AxisDevice::GetNamedValue(imp::IAxisDevice::NamedValuesMap<T>&, const string&) const [with T = unsigned char; imp::IAxisDevice::NamedValuesMap<T> = std::map<std::__cxx11::basic_string<char>, unsigned char, std::less<std::__cxx11::basic_string<char> >, std::allocator<std::pair<const std::__cxx11::basic_string<char>, unsigned char> > >; std::string = std::__cxx11::basic_string<char>]
+Time: 2026-Mar-04 05:59:09.460879
+StackTrace: 
+Dispatcher::Run(maxDispatches=0,maxWaitInMs.count()=9223372036854775807,maxExecutionTimeInMs.count()=9223372036854775807)
+LuaAxisDevice::GetFlagStatus(L=0x00007FBE7C001828)
+AxisDevice::GetFlagStatus(Name()=XAxis,flagName=PositiveHalf,forceRefresh=true)
+
+------ BEGIN LUA Stack Trace ------
+stack traceback:
+	[C]: in ?
+	[C]: in field 'GetFlagStatus'
+	./SupportFolder/Scripts/XAxis.lua:52: in function 'HomeXAxisToCenter'
+	./SupportFolder/Scripts/XAxis.lua:72: in function 'HomeXAxis'
+	./SupportFolder/Scripts/Initialize.lua:43: in function 'HomeAllAxes'
+	./SupportFolder/Scripts/Initialize.lua:51: in main chunk
+------- END LUA Stack Trace -------
+ [LuaScripting] [LuaWorkflowExecutor.cpp,473]
+2026-03-04 05:59:09.461357 [0x00007fbe9987f160] [Error  ] Run-time error executing "./SupportFolder/Scripts/Initialize.lua". Details captured as part of the stack trace. [LuaScripting] [LuaWorkflowExecutor.cpp,310]
+2026-03-04 05:59:09.461449 [0x00007fbe9987f160] [Info   ] Script completion status: COMPLETE_FAILED [MotionSynergyAPI] [ScriptExecutor.cpp,71]
+2026-03-04 05:59:09.461469 [0x00007fbe9987f160] [Error  ] Error Details:Run-time error executing "./SupportFolder/Scripts/Initialize.lua". Details captured as part of the stack trace. [MotionSynergyAPI] [ScriptExecutor.cpp,91]
+2026-03-04 05:59:09.461698 [0x00007fbe9a89f160] [Error  ] The script has encountered an error during execution. Refer to the log for more details. [MotionSynergyAPI] [NativeCallMacros.h,152]
+2026-03-04 05:59:09.461725 [0x00007fbea19ff160] [Error  ] Exception: Script '[SupportFolder]/Scripts/Initialize.lua' failed: Run-time error executing "./SupportFolder/Scripts/Initialize.lua". Details captured as part of the stack trace.
+Type: ExecuteScriptException
+File: /home/sysadmin/buildAgent/work/b663454bb0afd0d5/DoverMotion/MotionSynergyAPI/Impl/native/Scripting/src/ScriptExecutor.cpp
+Line: 138
+Function: std::pair<std::map<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, bool> MotionSynergyAPI::ScriptExecutor::ExecuteScript(const string&, const std::__cxx11::list<imp::ScriptParameter>&)
+Time: 2026-Mar-04 05:59:09.461660
+StackTrace: 
+MotionSynergyAPINative::Initialize()
+ [MotionSynergyAPI] [ScriptExecutor.cpp,138]
+2026-03-04 05:59:09.504767 [0x00007fff55a6f160] [Info   ] Logging stopped. [Logger] []

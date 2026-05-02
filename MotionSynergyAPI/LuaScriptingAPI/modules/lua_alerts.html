@@ -1,0 +1,335 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><strong>lua_alerts</strong></li>
+  <li><a href="../modules/lua_config.html">lua_config</a></li>
+  <li><a href="../modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><a href="../modules/lua_logger.html">lua_logger</a></li>
+  <li><a href="../modules/lua_clock.html">lua_clock</a></li>
+</ul>
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="../globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="../devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="../devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><a href="../devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedAxisDriver.html">EmulatedAxisDriver</a></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>lua_alerts</code></h1>
+<p>Provides the ability for a script to raise and clear alerts.</p>
+<p> Raising and clearing alerts should typically be done through the generated lua code
+ specific to a project (e.g. CustomAlerts.lua) which provides a more convenient interface.</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#RaiseLowSeverityAlert">RaiseLowSeverityAlert</a></td>
+    <td class="summary">Raise a low severity alert.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#RaiseMediumSeverityAlert">RaiseMediumSeverityAlert</a></td>
+    <td class="summary">Raise a medium severity alert.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#RaiseHighSeverityAlert">RaiseHighSeverityAlert</a></td>
+    <td class="summary">Raise a high severity alert.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#RaiseSafetyCriticalSeverityAlert">RaiseSafetyCriticalSeverityAlert</a></td>
+    <td class="summary">Raise a safety critical severity alert.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#ClearAlert">ClearAlert</a></td>
+    <td class="summary">Clear a previously raised alert.</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "RaiseLowSeverityAlert"></a>
+    <strong>RaiseLowSeverityAlert (alertCode)</strong>
+    </dt>
+    <dd>
+    Raise a low severity alert. </p>
+
+<p> A low severity alert is for information purposes only.
+ The system will not take any action based on alerts with this severity.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">alertCode</span>
+            <span class="types"><span class="type">int</span></span>
+         The code of the alert to raise
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        A report ID which can be passed to <a href="../modules/lua_alerts.html#ClearAlert">ClearAlert</a> if the alert needs to be cleared.
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lua_alerts.html#ClearAlert">ClearAlert</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> alerts = <span class="global">require</span> <span class="string">'lua_alerts'</span>
+<span class="keyword">local</span> reportId = alerts.RaiseLowSeverityAlert(<span class="number">30006</span>)
+
+<span class="comment">-- Optionally clear the alert some time later.
+</span>alerts.ClearAlert(reportId)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "RaiseMediumSeverityAlert"></a>
+    <strong>RaiseMediumSeverityAlert (alertCode)</strong>
+    </dt>
+    <dd>
+    Raise a medium severity alert. </p>
+
+<p> A medium severity alert will cause the current script to be aborted. However, the system
+ is still in a valid state to execute further commands/scripts.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">alertCode</span>
+            <span class="types"><span class="type">int</span></span>
+         The code of the alert to raise
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        A report ID which can be passed to <a href="../modules/lua_alerts.html#ClearAlert">ClearAlert</a> if the alert needs to be cleared.
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lua_alerts.html#ClearAlert">ClearAlert</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> alerts = <span class="global">require</span> <span class="string">'lua_alerts'</span>
+<span class="keyword">local</span> reportId = alerts.RaiseMediumSeverityAlert(<span class="number">30007</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "RaiseHighSeverityAlert"></a>
+    <strong>RaiseHighSeverityAlert (alertCode)</strong>
+    </dt>
+    <dd>
+    Raise a high severity alert.  This will cause the current script to
+ be aborted. The system will be placed in an 'Error' state and a re-initialization must be performed before further commands/scripts attempted.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">alertCode</span>
+            <span class="types"><span class="type">int</span></span>
+         The code of the alert to raise
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        A report ID which can be passed to <a href="../modules/lua_alerts.html#ClearAlert">ClearAlert</a> if the alert needs to be cleared.
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lua_alerts.html#ClearAlert">ClearAlert</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> alerts = <span class="global">require</span> <span class="string">'lua_alerts'</span>
+<span class="keyword">local</span> reportId = alerts.RaiseHighSeverityAlert(<span class="number">30008</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "RaiseSafetyCriticalSeverityAlert"></a>
+    <strong>RaiseSafetyCriticalSeverityAlert (alertCode)</strong>
+    </dt>
+    <dd>
+    Raise a safety critical severity alert.  This will cause the current script to
+ be aborted. The state of the software system is unknown and a restart is required before attempting further commands/scripts.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">alertCode</span>
+            <span class="types"><span class="type">int</span></span>
+         The code of the alert to raise
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        A report ID which can be passed to <a href="../modules/lua_alerts.html#ClearAlert">ClearAlert</a> if the alert needs to be cleared.
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lua_alerts.html#ClearAlert">ClearAlert</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> alerts = <span class="global">require</span> <span class="string">'lua_alerts'</span>
+<span class="keyword">local</span> reportId = alerts.RaiseSafetyCriticalSeverityAlert(<span class="number">30009</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "ClearAlert"></a>
+    <strong>ClearAlert (reportId)</strong>
+    </dt>
+    <dd>
+    Clear a previously raised alert. </p>
+
+<p> If there is no alert with the given report ID, nothing happens.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">reportId</span>
+            <span class="types"><span class="type">int</span></span>
+         The report ID returned when the alert was raised.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> alerts = <span class="global">require</span> <span class="string">'lua_alerts'</span>
+<span class="keyword">local</span> reportId = alerts.RaiseLowSeverityAlert(<span class="number">30006</span>)
+
+<span class="comment">-- Clear the alert some time later.
+</span>alerts.ClearAlert(reportId)</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

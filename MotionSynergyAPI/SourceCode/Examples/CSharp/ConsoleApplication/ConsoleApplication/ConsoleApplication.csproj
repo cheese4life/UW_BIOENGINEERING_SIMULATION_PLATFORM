@@ -1,0 +1,130 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Platforms>x64</Platforms>
+        <SupportFolderDir>..\..\..\..\..\SupportFolder\</SupportFolderDir>
+        <ImportDirectoryBuildProps>false</ImportDirectoryBuildProps>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <BuildPathSuffix>\bin\$(Configuration)</BuildPathSuffix>
+        <OSName>windows</OSName>
+        <OSArchitecture>$(Platforms)</OSArchitecture>
+        <BuildFolderName>build_$(OSName)_$(OSArchitecture)$(BuildPathSuffix)</BuildFolderName>
+    </PropertyGroup>
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+        <BuildPathSuffix Condition="$(Configuration) == 'Debug'">_debug\bin</BuildPathSuffix>
+        <BuildPathSuffix Condition="$(Configuration) == 'Release'">_release\bin</BuildPathSuffix>
+        <OSName>linux</OSName>
+        <OSArchitecture>$(Platforms)</OSArchitecture>
+        <OSArchitecture Condition="'$(RuntimeIdentifier)' == 'linux-arm'" >arm64</OSArchitecture>
+        <BuildFolderName>build_$(OSName)_$(OSArchitecture)$(BuildPathSuffix)</BuildFolderName>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <OutputPath>$(ProjectDir)$(BuildFolderName)</OutputPath>
+        <LibrariesDir>..\Libraries\$(OSName)\$(OSArchitecture)\$(Configuration)\</LibrariesDir>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="ConfigurationFiles\**" />
+        <EmbeddedResource Remove="ConfigurationFiles\**" />
+        <Reference Include="MotionSynergyAPI">
+            <HintPath>$(LibrariesDir)MotionSynergyAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="MotionSynergyAPIInterface">
+            <HintPath>$(LibrariesDir)MotionSynergyAPIInterface.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="ConfigurationFiles\DOF-5\" />
+        <Folder Include="ConfigurationFiles\SmartStageLinear\" />
+        <Folder Include="ConfigurationFiles\SmartStageXY\" />
+        <Folder Include="ConfigurationFiles\DMCM\" />
+        <Folder Include="Scripts\DOF-5\" />
+        <Folder Include="Scripts\SmartStageLinear\" />
+        <Folder Include="Scripts\SmartStageXY\" />
+        <Folder Include="Scripts\DMCM\" />
+        <Folder Include="Scripts\Utilities\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="$(SupportFolderDir)Instrument.cfg" Link="ConfigurationFiles\Instrument.cfg" />
+        <None Include="$(SupportFolderDir)Logger.cfg" Link="ConfigurationFiles\Logger.cfg" />
+        <None Include="$(SupportFolderDir)ConfigurationFiles\DOF-5\Instrument.cfg" Link="ConfigurationFiles\DOF-5\Instrument.cfg" />
+        <None Include="$(SupportFolderDir)ConfigurationFiles\SmartStageXY\Instrument.cfg" Link="ConfigurationFiles\SmartStageXY\Instrument.cfg" />
+        <None Include="$(SupportFolderDir)ConfigurationFiles\SmartStageLinear\Instrument.cfg" Link="ConfigurationFiles\SmartStageLinear\Instrument.cfg" />
+        <None Include="$(SupportFolderDir)ConfigurationFiles\DMCM\Instrument.cfg" Link="ConfigurationFiles\DMCM\Instrument.cfg" />
+        <None Include="$(SupportFolderDir)Scripts\DMCM\HomeXAxis.lua" Link="Scripts\DMCM\HomeXAxis.lua" />
+        <None Include="$(SupportFolderDir)Scripts\DMCM\Initialize.lua" Link="Scripts\DMCM\Initialize.lua" />
+        <None Include="$(SupportFolderDir)Scripts\DOF-5\HomeZAxis.lua" Link="Scripts\DOF-5\HomeZAxis.lua" />
+        <None Include="$(SupportFolderDir)Scripts\DOF-5\Initialize.lua" Link="Scripts\DOF-5\Initialize.lua" />
+        <None Include="$(SupportFolderDir)Scripts\ScriptPrelude.lua" Link="Scripts\ScriptPrelude.lua" />
+        <None Include="$(SupportFolderDir)Scripts\ScriptsReadme.md" Link="Scripts\ScriptsReadme.md" />
+        <None Include="$(SupportFolderDir)Scripts\SmartStageXY\HomeXAxis.lua" Link="Scripts\SmartStageXY\HomeXAxis.lua" />
+        <None Include="$(SupportFolderDir)Scripts\SmartStageXY\HomeXAxisNegativeLimit.lua" Link="Scripts\SmartStageXY\HomeXAxisNegativeLimit.lua" />
+        <None Include="$(SupportFolderDir)Scripts\SmartStageXY\HomeXAxisPositiveLimit.lua" Link="Scripts\SmartStageXY\HomeXAxisPositiveLimit.lua" />
+        <None Include="$(SupportFolderDir)Scripts\SmartStageXY\HomeYAxis.lua" Link="Scripts\SmartStageXY\HomeYAxis.lua" />
+        <None Include="$(SupportFolderDir)Scripts\SmartStageXY\Initialize.lua" Link="Scripts\SmartStageXY\Initialize.lua" />
+        <None Include="$(SupportFolderDir)Scripts\SmartStageXY\TestWorkflow.lua" Link="Scripts\SmartStageXY\TestWorkflow.lua" />
+        <None Include="$(SupportFolderDir)Scripts\SmartStageLinear\HomeXAxis.lua" Link="Scripts\SmartStageLinear\HomeXAxis.lua" />
+        <None Include="$(SupportFolderDir)Scripts\SmartStageLinear\HomeXAxisNegativeLimit.lua" Link="Scripts\SmartStageLinear\HomeXAxisNegativeLimit.lua" />
+        <None Include="$(SupportFolderDir)Scripts\SmartStageLinear\HomeXAxisPositiveLimit.lua" Link="Scripts\SmartStageLinear\HomeXAxisPositiveLimit.lua" />
+        <None Include="$(SupportFolderDir)Scripts\SmartStageLinear\Initialize.lua" Link="Scripts\SmartStageLinear\Initialize.lua" />
+        <None Include="$(SupportFolderDir)Scripts\Utilities\Abort.lua" Link="Scripts\Utilities\Abort.lua" />
+        <None Include="$(SupportFolderDir)Scripts\Utilities\CustomAlerts.lua" Link="Scripts\Utilities\CustomAlerts.lua" />
+        <None Include="$(SupportFolderDir)Scripts\Utilities\Emulation.lua" Link="Scripts\Utilities\Emulation.lua" />
+        <None Include="$(SupportFolderDir)Scripts\Utilities\Environment.lua" Link="Scripts\Utilities\Environment.lua" />
+        <None Include="$(SupportFolderDir)Scripts\Utilities\EnvironmentUtilities.lua" Link="Scripts\Utilities\EnvironmentUtilities.lua" />
+        <None Include="$(SupportFolderDir)Scripts\Utilities\init.lua" Link="Scripts\Utilities\init.lua" />
+        <None Include="$(SupportFolderDir)Scripts\Utilities\LogWrapper.lua" Link="Scripts\Utilities\LogWrapper.lua" />
+        <None Include="$(SupportFolderDir)Scripts\Utilities\MathUtilities.lua" Link="Scripts\Utilities\MathUtilities.lua" />
+        <None Include="$(SupportFolderDir)Scripts\Utilities\Time.lua" Link="Scripts\Utilities\Time.lua" />
+    </ItemGroup>
+
+    <Target Name="CopyConfigurationFiles" AfterTargets="Build">
+        <ItemGroup>
+            <ConfigurationFiles Include="$(SupportFolderDir)*.cfg" />
+        </ItemGroup>
+        <Copy
+            SourceFiles="@(ConfigurationFiles)"
+            DestinationFolder="$(TargetDir)"
+            SkipUnchangedFiles="true" />
+    </Target>
+
+    <Target Name="CopyScripts" AfterTargets="Build">
+        <ItemGroup>
+            <ScriptFiles Include="$(SupportFolderDir)Scripts\**\*.*" />
+        </ItemGroup>
+        <Copy
+            SourceFiles="@(ScriptFiles)"
+            DestinationFolder="$(TargetDir)Scripts\%(RecursiveDir)"
+            SkipUnchangedFiles="true" />
+    </Target>
+
+    <Target Name="CopySmartStageLib" AfterTargets="Build">
+        <ItemGroup>
+            <LibFiles Include="$(LibrariesDir)*SmartStageAxis.*" />
+        </ItemGroup>
+        <Copy
+            SourceFiles="@(LibFiles)"
+            DestinationFolder="$(TargetDir)"
+            SkipUnchangedFiles="true" />
+    </Target>
+
+    <Target Name="CopyMotionSynergyAPINativeLib" AfterTargets="Build">
+        <ItemGroup>
+            <LibFiles Include="$(LibrariesDir)*MotionSynergyAPINative.*" />
+        </ItemGroup>
+        <Copy
+            SourceFiles="@(LibFiles)"
+            DestinationFolder="$(TargetDir)"
+            SkipUnchangedFiles="true" />
+    </Target>
+
+</Project>

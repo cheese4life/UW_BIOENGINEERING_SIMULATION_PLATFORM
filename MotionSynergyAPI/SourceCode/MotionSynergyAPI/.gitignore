@@ -1,0 +1,3 @@
+# don't check in some temporarily generated markdown and SDS files
+**/docs/*Dependencies.md
+CMakeGraphVizOptions.cmake

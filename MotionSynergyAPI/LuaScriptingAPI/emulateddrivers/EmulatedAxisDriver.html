@@ -1,0 +1,426 @@
+<!--
+    The copyright to the computer program(s) herein is the property of
+    Dover Motion, Inc. This file is subject to the terms and
+    conditions found in the 'DoverLicense.txt' file included with this
+    source code package.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Motion Synergy Lua API Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Motion Synergy</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
+</ul>
+
+
+<h2>EmulatedDrivers</h2>
+<ul class="nowrap">
+  <li><a href="../emulateddrivers/BaseEmulatedDriver.html">BaseEmulatedDriver</a></li>
+  <li><strong>EmulatedAxisDriver</strong></li>
+  <li><a href="../emulateddrivers/EmulatedDigitalInputDriver.html">EmulatedDigitalInputDriver</a></li>
+</ul>
+<h2>GlobalObjects</h2>
+<ul class="nowrap">
+  <li><a href="../globalobjects/Status.html">Status</a></li>
+</ul>
+<h2>Devices</h2>
+<ul class="nowrap">
+  <li><a href="../devices/AxisDevice.html">AxisDevice</a></li>
+  <li><a href="../devices/AxisDevice.MotionControllerConfiguration.html">AxisDevice.MotionControllerConfiguration</a></li>
+  <li><a href="../devices/AxisDevice.UserDefinedProfile.html">AxisDevice.UserDefinedProfile</a></li>
+  <li><a href="../devices/DigitalInputDevice.html">DigitalInputDevice</a></li>
+  <li><a href="../devices/BaseDevice.html">BaseDevice</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lua_alerts.html">lua_alerts</a></li>
+  <li><a href="../modules/lua_config.html">lua_config</a></li>
+  <li><a href="../modules/lua_filesystem.html">lua_filesystem</a></li>
+  <li><a href="../modules/lua_logger.html">lua_logger</a></li>
+  <li><a href="../modules/lua_clock.html">lua_clock</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/ScriptsReadme.md.html">ScriptsReadme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Emulateddriver <code>EmulatedAxisDriver</code></h1>
+<p>Emulated driver of <a href="../devices/AxisDevice.html#">AxisDevice</a>.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#SetResponse">SetResponse</a></td>
+    <td class="summary">Set the driver response to be returned for all subsequent actions.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#AddToResponseList">AddToResponseList</a></td>
+    <td class="summary">Set the response code to be returned for the next 'count' actions.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SetCurrentPosition">SetCurrentPosition</a></td>
+    <td class="summary">Set the emulated axis motor position.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#SetFlagStatusEnable">SetFlagStatusEnable</a></td>
+    <td class="summary">Sets the enable status of the emulated flag range.</td>
+    </tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+    <tr>
+    <td class="name" nowrap><a href="#Name">Name</a></td>
+    <td class="summary">Name of the driver.</td>
+    </tr>
+    <tr>
+    <td class="name" nowrap><a href="#ResponseListLooping">ResponseListLooping</a></td>
+    <td class="summary">Specifies whether a response is discarded from the response list on action completion or
+ re-added to the end of the list.</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "SetResponse"></a>
+    <strong>SetResponse (response)</strong>
+    </dt>
+    <dd>
+    Set the driver response to be returned for all subsequent actions. </p>
+
+<p>  This provides a simple mechanism for injecting errors. Note that this function will also
+  clear the current response list if present.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">response</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+<p> The driver response code can be one of the following strings:</p>
+
+<ul>
+    <li><code>&apos;DriverSuccess&apos;</code></li>
+    <li><code>&apos;DriverCommunicationFailure&apos;</code></li>
+    <li><code>&apos;DriverGeneralError&apos;</code></li>
+    <li><code>&apos;DriverBusy&apos;</code></li>
+    <li><code>&apos;DriverInvalidState&apos;</code></li>
+    <li><code>&apos;DriverUnableToGetOrSetValue&apos;</code></li>
+    <li><code>&apos;DriverActionFailed&apos;</code></li>
+    <li><code>&apos;DriverHalt&apos;</code></li>
+    <li><code>&apos;DriverEStop&apos;</code></li>
+</ul>
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- set a device driver to return DriverActionFailed when an action is called
+</span>EmulatedDriver.SetResponse(<span class="string">'DriverActionFailed'</span>)
+
+<span class="comment">-- attempting to call the device function will raise a DriverActionFailed error
+</span>Device.PerformAction()
+Device.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "AddToResponseList"></a>
+    <strong>AddToResponseList (response, count)</strong>
+    </dt>
+    <dd>
+    Set the response code to be returned for the next 'count' actions. </p>
+
+<p>  This provides a simple mechanism for specifying a sequence of responses. Can be called
+  multiple times to build up a varying sequence of responses. Note that once all responses
+  have been used, the fixed response code specified by <code>SetResponse</code> will be used.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">response</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         See <code>response</code> parameter in <code>SetResponse</code>.
+        </li>
+        <li><span class="parameter">count</span>
+            <span class="types"><span class="type">int</span></span>
+         The number of actions to return the response code for.
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../emulateddrivers/BaseEmulatedDriver.html#SetResponse">SetResponse</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- set driver to complete the first 2 actions successfully
+</span>EmulatedDriver.AddToResponseList(<span class="string">'DriverSuccess'</span>, <span class="number">2</span>)
+<span class="comment">-- then raise a general error on the third action
+</span>EmulatedDriver.AddToResponseList(<span class="string">'DriverGeneralError'</span>, <span class="number">1</span>)
+
+<span class="comment">-- the first 2 device actions will run without errors
+</span>Device.PerformAction()
+Device.Wait()
+Device.PerformAction()
+Device.Wait()
+<span class="comment">-- this third action will raise a DriverGeneralError
+</span>Device.PerformAction()
+Device.Wait()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SetCurrentPosition"></a>
+    <strong>SetCurrentPosition (position)</strong>
+    </dt>
+    <dd>
+    Set the emulated axis motor position. </p>
+
+<p> This function updates the <code>CommandedPosition</code> and <code>ActualPosition</code> axis fields to the
+ specified value.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">position</span>
+            <span class="types"><span class="type">int</span></span>
+         The new axis position.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- set the internal position value to 123
+</span>EmulatedAxisDriver.SetCurrentPosition(<span class="number">123</span>)
+
+<span class="comment">-- the emulated axis device will now return 123 as its position
+</span><span class="keyword">local</span> position = Axis.CommandedPosition</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "SetFlagStatusEnable"></a>
+    <strong>SetFlagStatusEnable (flagIndex, enable)</strong>
+    </dt>
+    <dd>
+
+<p>Sets the enable status of the emulated flag range. </p>
+
+<p> The flag status is enabled by default and the flag status changes when the axis is within the
+ flag range. When disabled, the flag status returned within the range is always zero.</p>
+
+<p> Example instrument configuration snippet for setting up emulated flags:</p>
+
+<pre><code>[Axis_Device]
+Type=AxisDevice
+Driver=EmulatedAxisDriver
+NamedFlags=Axis_NamedFlags
+
+# name the flag at index 0 as 'Flag1' and flag at index 1 as 'Flag2'
+[Axis_NamedFlags]
+Flag1=0
+Flag2=1
+
+[EmulatedAxisDriver]
+Type=EmulatedAxisDriver
+NamedFlagPositions=EmulatedAxisDriver_NamedFlagPositions
+NamedFlagExtents=EmulatedAxisDriver_NamedFlagExtents
+
+# set up 'Flag1' (index = 0) flag range between 0 and 100
+# set up 'Flag2' (index = 1) flag range between 100 and 5100
+[EmulatedAxisDriver_NamedFlagPositions]
+0=0
+1=5000
+
+[EmulatedAxisDriver_NamedFlagExtents]
+0=100
+1=5100
+</code></pre>
+
+
+
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flagIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         The flag index to set the enable status for.
+        </li>
+        <li><span class="parameter">enable</span>
+            <span class="types"><span class="type">bool</span></span>
+         The enable status to set.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- In this example, we are using flag range specified in the
+</span><span class="comment">-- axis configuration from the example above.
+</span>
+<span class="comment">-- move the axis to position 5000 which is within the Flag2 range
+</span>Axis.MoveAbsolute(<span class="number">5000</span>)
+Axis.Wait()
+
+<span class="keyword">local</span> flag1 = Axis.GetFlagStatus(<span class="string">'Flag1'</span>) <span class="comment">-- returns false
+</span><span class="keyword">local</span> flag2 = Axis.GetFlagStatus(<span class="string">'Flag2'</span>) <span class="comment">-- returns true
+</span>
+<span class="comment">-- now disable the enable status on Flag2 (index = 1)
+</span>EmulatedAxisDriver.SetFlagStatusEnable(<span class="number">1</span>, <span class="keyword">false</span>)
+
+<span class="comment">-- Flag2 status now reports false even though it is within range
+</span>flag2 = Axis.GetFlagStatus(<span class="string">'Flag2'</span>) <span class="comment">-- returns false</span></pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Name"></a>
+    <strong>Name</strong>
+    </dt>
+    <dd>
+    Name of the driver.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">Name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+          <em>readonly</em>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ResponseListLooping"></a>
+    <strong>ResponseListLooping</strong>
+    </dt>
+    <dd>
+    Specifies whether a response is discarded from the response list on action completion or
+ re-added to the end of the list.
+
+    </ul>
+    </ul>
+    </ul>
+
+    <ul>
+        <li><span class="parameter">ResponseListLooping</span>
+            <span class="types"><span class="type">bool</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- enable response looping
+</span>EmulatedDriver.ResponseListLooping = <span class="keyword">true</span>
+
+<span class="comment">-- disable response looping and discard responses
+</span>EmulatedDriver.ResponseListLooping = <span class="keyword">false</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>Motion Synergy Lua API Documentation</i>
+<br />
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

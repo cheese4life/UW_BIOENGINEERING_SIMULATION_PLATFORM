@@ -1,0 +1,13 @@
+2026-03-04 05:56:42.628535 [0x00007ffedef98fa0] [Info   ] Logging started, using configuration at: "/home/anton/MotionSynergyAPI/SupportFolder/Logger.cfg" [Logger] []
+2026-03-04 05:56:42.628574 [0x00007ffedef98fa0] [Info   ] 
+
+Instrument Configuration     : ./SupportFolder/Instrument.cfg
+Log Configuration            : ./SupportFolder/Logger.cfg
+
+ [MotionSynergyAPI] [MotionSynergyAPI.cpp,194]
+2026-03-04 05:56:42.632265 [0x00007ffedef98fa0] [Info   ] Initializing DOF5... [DOF5] [DOF5.cpp,27]
+2026-03-04 05:56:42.973180 [0x00007ffedef98fa0] [Info   ] Homing DOF5... [DOF5] [DOF5.cpp,31]
+2026-03-04 05:56:43.113771 [0x00007ffedef98fa0] [Info   ] DOF5 is in Negative Side. [DOF5] [DOF5.cpp,65]
+2026-03-04 05:56:43.184185 [0x00007ffedef98fa0] [Info   ] DOF5 is ready for use. [DOF5] [DOF5.cpp,35]
+2026-03-04 05:56:43.184255 [0x00007ffedef98fa0] [Info   ] Performing a series of moves on the DOF5... [DOF5] [DOF5.cpp,79]
+2026-03-04 05:56:47.386056 [0x00007ffedef98fa0] [Info   ] Logging stopped. [Logger] []

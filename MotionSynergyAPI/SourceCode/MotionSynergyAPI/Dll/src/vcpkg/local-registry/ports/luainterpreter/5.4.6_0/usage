@@ -1,0 +1,1 @@
+This package builds a custom version of lua.exe that includes luafilesystem as a statically linked library.

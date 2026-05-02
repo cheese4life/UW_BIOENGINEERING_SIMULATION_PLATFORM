@@ -1,0 +1,162 @@
+﻿END USER AGREEMENT
+This End User Agreement (“Agreement”) is an agreement between Dover Motion, Inc. (collectively,
+“Company,” “we,” “us,” or “our”) and You (including any entity or organization You represent,
+collectively, “Customer” or “You”).  Please read this Agreement carefully as this Agreement governs
+the terms and conditions under which You are permitted to use the Company’s software (the “Software”).
+You agree to be bound by the terms of this agreement by accessing, installing, copying, or
+otherwise using the software. If you do not agree, do not access, install, copy, or otherwise use
+the software.
+
+1.	LICENSE AND PERMISSION TO USE
+Subject to the terms and conditions of this Agreement, Company grants You a limited, non-
+exclusive, non-transferable license to use the Software subject to the following:
+You may:
+Use the Software in the form that is distributed by the Company only in connection with
+products that you have licensed or otherwise validly obtained from the Company.
+You may not:
+(a)	Decompile, decrypt, disassemble, or otherwise attempt to derive the source code
+(beyond the extent the Company provides You the source code), techniques,
+processes, algorithms, know-how, or other information (collectively “Reverse
+Engineer”) related to the Software, or bypass, circumvent, damage or otherwise
+interfere with any security or other features of the Software designed to control
+the manner in which the Software are used, harvest or mine Company’s
+proprietary content or information from the Software, or otherwise access or use
+the Software in a manner inconsistent with individual human usage;
+(b)	Rent, lease, lend, sell, license, sublicense, assign, distribute, publish, transfer, or
+otherwise make available the Software to any third party without the Company’s
+written permission;
+(c)	Use the Software in any manner that infringes, misappropriates, or otherwise
+violates any intellectual property rights or other rights of any person, or any
+applicable laws;
+(d)	Export or re-export, directly or indirectly, the Software, any associated
+documentation, or systems , to any country to which such export or re-export is
+restricted by law or regulation of the United States or any foreign government
+having jurisdiction without the prior authorization, if required, of the Office of
+Export Administration, Department of Commerce, Washington, D.C. and the
+corresponding agency of such foreign government.
+
+2.	USAGE DATA
+You agree that Company may collect and use technical data and related information, including
+but not limited to technical information about Your devices, systems and software peripherals,
+that is gathered periodically to facilitate the provision of Software updates, support and other
+services provided by the Company. Company may use this information, as long as it is in a form
+that does not personally identify You, to improve its products or to provide services or
+technologies provided by the Company.
+
+3.	INTELLECTUAL PROPERTY
+Title to the Software and all copies thereof, shall remain with Company or others from whom
+Company has obtained a respective licensing right.  In furtherance of the foregoing, You shall
+and hereby do assign, on Your own behalf and on behalf of Your organization, to Company all
+right, title, and interest in and to any and all intellectual property rights that may accrue or vest in
+You or Your organization related to the Software, including, without limitation, any and all
+improvements, derivative works, modifications, enhancements, feedback, comments,
+suggestions, know-how, and ideas, related to the Software. Company reserves all rights not
+expressly granted under this Agreement.
+You hereby represent, warrant, and covenant that You have all of the rights, licenses, and
+consents required to submit and transmit any data or information submitted or transmitted by
+You and Your end users using the Software, and that You will be responsible and liable for all
+such submissions and transmissions.
+
+4.	GOVERNMENT NOTICE
+If the Software or any related documentation is acquired by or for the use by an agency of the
+U.S. Government, the Software and documentation shall be considered “commercial computer
+software” or “commercial computer software documentation” respectively, as those terms are
+used in 48 CFR §12.212, 48 CFR §227.7202, or 48 CFR §252.227-7014, and are licensed with
+only those rights as are granted to all other licensees as set forth in this Agreement.
+
+5.	TERM
+The rights and licenses granted herein are effective until terminated.  The license may be
+terminated by Company if: (i) You fail to comply with any term or condition and such failure is
+not remedied within fifteen (15) days after notice hereof from Company or such third party; or
+(ii) if the Company determines in its sole discretion to discontinue offering such Software.  Upon
+termination by either party, You shall return to Company or destroy the Software and all
+associated documentation, together with all copies in any form.
+
+6.	DISCLAIMER
+Company does not warrant that the functions contained in the Software will meet Your
+requirements or that the operation of the Software will be uninterrupted, secure, or error-free, or
+that any errors in the Software will be corrected.  Company does not provide any warranty of any
+kind that the Software will be compatible with any other Software or services You use
+(including, without limitation, any third-party software or services).
+EXCEPT AS SEPARATELY PROVIDED IN A WRITTEN WARRANTY FROM COMPANY,
+THE SOFTWARE IS PROVIDED “AS IS” AND ON AN “AS AVAILABLE” BASIS
+WITHOUT ANY WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+NOT LIMITED TO, THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, TITLE, QUIET ENJOYMENT, AND NON-INFRINGEMENT.
+
+7.	LIMITATION OF LIABILITY
+IN NO EVENT SHALL COMPANY, ITS AFFILIATES, LICENSORS, OR RESELLERS BE
+LIABLE FOR: (1) ECONOMICAL, INCIDENTAL, CONSEQUENTIAL, INDIRECT,
+SPECIAL, PUNITIVE OR EXEMPLARY DAMAGES, WHETHER CLAIMED UNDER
+CONTRACT, TORT OR ANY OTHER LEGAL THEORY, (2) LOSS OF OR DAMAGE TO
+YOUR DATA, PROGRAMMING, OR IT SYSTEMS, LOSS OF PROFITS, BUSINESS
+INTERRUPTION, OR OTHER PECUNIARY LOSS ARISING FROM THE USE OF (OR
+INABILITY TO USE) THE SOFTWARE, (3) PENALTIES OR PENALTY CLAUSES OF
+ANY DESCRIPTION, OR (4) ANY DAMAGE, CLAIMS, OR LOSSES RESULTING FROM
+THE USE OF THE SOFTWARE IN CONJUNCTION WITH OTHER PRODUCTS OR
+SERVICES (INCLUDING THIRD-PARTY PRODUCTS OR SERVICES); IN EACH CASE,
+EVEN IF COMPANY OR ITS AFFILIATES, LICENSORS, OR RESELLERS HAVE
+ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.  BECAUSE SOME
+STATES/JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF
+LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, SOME OF THE
+ABOVE LIMITATIONS MAY NOT APPLY TO YOU, BUT THEY SHALL APPLY TO THE
+MAXIMUM EXTENT PERMITTED BY LAW.  NOTWITHSTANDING ANYTHING
+HEREIN TO THE CONTRARY, IN NO EVENT SHALL COMPANY’S TOTAL
+AGGREGATED LIABILITY TO YOU FOR ALL DAMAGES IN ANY ONE OR MORE
+CAUSES OF ACTION EXCEED THE AMOUNT RECEIVED BY COMPANY FROM YOU
+FOR THE SOFTWARE.
+
+8.	SECURITY DISCLAIMER
+The Software is not designed or intended to be used with unsecure networks.  You acknowledge
+that use of the Software may rely upon certain networks, systems, and data communication
+mediums that are not controlled by Company and that may be vulnerable to data or security
+breaches, including, without limitation, internet networks used by Your internet providers and
+the databases and servers controlled by Your internet providers.  Company shall not be liable for
+any such breaches, including without limitation, damages and/or loss of data related to any
+security breach, and disclaims all warranties, including any implied or express warranties that
+any content will be secure or not otherwise lost or altered.
+
+9.	CONFIDENTIALITY
+The Software in source and object code forms, along with all associated documentation,
+flowcharts, design information, data (including databases and associated data schemas), code
+repositories, and other information relating to the Software (including, without limitation,
+product road maps and information related to the distribution, sale, pricing, of the Software and
+the Company’s other products and services) are Company’s  “Confidential Information.”  You
+must treat the Confidential Information as confidential in perpetuity unless and until any given
+item of Confidential Information is or becomes part of the public domain through no breach of
+confidentiality.  You may not use the Confidential Information beyond the scope of the rights
+granted, and to the extent You are a corporation or other legal entity, You may only share it with
+employees and contractors who are subject to legal obligations consistent with this Agreement to
+protect the confidentiality of the Confidential Information.  In the event that You are compelled
+to disclose any Confidential Information under applicable laws, rules, regulations, or pursuant to
+orders from competent authority, You will use Your best efforts to secure that any such required
+disclosure is under seal and subject to duties of confidentiality and non-disclosure.
+
+10.	EQUITABLE RELIEF
+You acknowledge and agree that a breach or threatened breach by You of any of its obligations
+under the Sections titled “License and Permission to Use,” “Intellectual Property, ”and/or
+“Confidentiality” would cause Company irreparable harm for which monetary damages would
+not be an adequate remedy and agree that, in the event of such breach or threatened breach,
+Company will be entitled to equitable relief, including a restraining order, an injunction, specific
+performance, and any other relief that may be available from any court, without any requirement
+to post a bond or other security, or to prove actual damages or that monetary damages are not an
+adequate remedy.  Such remedies are not exclusive and are in addition to all other remedies that
+may be available at law, in equity, or otherwise.
+
+11.	GOVERNING LAW
+This Agreement, and all disputes, claims, and controversies arising under it, is governed by the
+laws of the State of Massachusetts without giving effect to the principles thereof relating to
+conflicts of law.  Each party expressly excludes the application of the Uniform Commercial
+Code and the United Nations Convention on Contracts for the International Sale of Goods.  Each
+party hereby irrevocably consents to the jurisdiction of the state and federal courts located in the
+State of Massachusetts, and waives any defense based on inconvenient forum in relation to such
+courts.
+
+12.	GENERAL
+This Agreement contains the entire agreement between the parties with respect to the use,
+reproduction, and transfer of the Software.
+Any waiver by either party of any provision of this Agreement shall not constitute or be deemed
+a subsequent waiver of that or any other portion.
+Any amendment, modification or other change to this Agreement shall be ineffective unless
+made in writing and authorized by the Company.
+

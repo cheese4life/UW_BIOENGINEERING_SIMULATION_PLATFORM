@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "MotionSynergyAPI/1.0.0": {
+        "dependencies": {
+          "MotionSynergyAPIInterface": "1.0.0"
+        },
+        "runtime": {
+          "MotionSynergyAPI.dll": {}
+        }
+      },
+      "MotionSynergyAPIInterface/1.0.0": {
+        "runtime": {
+          "MotionSynergyAPIInterface.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MotionSynergyAPI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MotionSynergyAPIInterface/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

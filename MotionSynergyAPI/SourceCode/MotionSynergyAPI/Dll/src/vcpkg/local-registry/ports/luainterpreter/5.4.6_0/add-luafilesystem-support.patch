@@ -1,0 +1,22 @@
+diff --git a/src/linit.c b/src/linit.c
+index 69808f8..ddc99ed 100644
+--- a/src/linit.c
++++ b/src/linit.c
+@@ -34,6 +34,9 @@
+ #include "lualib.h"
+ #include "lauxlib.h"
+ 
++extern "C" {
++LUAMOD_API int (luaopen_lfs) (lua_State *L);
++}
+ 
+ /*
+ ** these libs are loaded by lua.c and are readily available to any Lua
+@@ -50,6 +53,7 @@ static const luaL_Reg loadedlibs[] = {
+   {LUA_MATHLIBNAME, luaopen_math},
+   {LUA_UTF8LIBNAME, luaopen_utf8},
+   {LUA_DBLIBNAME, luaopen_debug},
++  {"lfs", luaopen_lfs},
+   {NULL, NULL}
+ };
+ 

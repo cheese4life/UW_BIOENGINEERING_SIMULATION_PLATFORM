@@ -1,0 +1,32 @@
+2026-03-04 06:01:15.583770 [0x00007fbe188cf160] [Info   ] Logging started, using configuration at: "/home/anton/MotionSynergyAPI/SupportFolder/Logger.cfg" [Logger] []
+2026-03-04 06:01:15.583879 [0x00007fbe188cf160] [Info   ] 
+
+Log Configuration : ./SupportFolder/Logger.cfg
+Events Configuration: ./SupportFolder/Events.cfg
+
+ [MotionSynergyAPI] [MotionSynergyAPICore.cpp,116]
+2026-03-04 06:01:15.584285 [0x00007fbe188cf160] [Info   ] 
+
+Default Configuration     : ./SupportFolder/Instrument.cfg
+Local   Configuration     : ./ProgramDataFolder/Instrument.local.cfg
+
+ [MotionSynergyAPI] [MotionSynergyAPICore.cpp,159]
+2026-03-04 06:01:15.585433 [0x00007fbe188cf160] [Info   ] 
+
+===============================================================================
+Application Version        : 1.0
+Motion Synergy API Version : 4.0.16063
+Branch                     : master
+===============================================================================
+
+ [MotionSynergyAPI] [MotionSynergyAPICore.cpp,186]
+2026-03-04 06:01:15.594555 [0x00007fbe11fbf160] [Info   ] [Initialize] Initializing all axes [Script] [LogWrapper.lua,51]
+2026-03-04 06:01:15.594596 [0x00007fbe11fbf160] [Info   ] [HomeXAxis] Initializing X Axis [Script] [LogWrapper.lua,51]
+2026-03-04 06:01:15.936268 [0x00007fbe11fbf160] [Info   ] [HomeXAxis] X Axis initialization complete [Script] [LogWrapper.lua,51]
+2026-03-04 06:01:15.936363 [0x00007fbe11fbf160] [Info   ] [Initialize] Initialization complete [Script] [LogWrapper.lua,51]
+2026-03-04 06:01:15.936438 [0x00007fbe11fbf160] [Info   ] [Initialize] Homing all axes [Script] [LogWrapper.lua,51]
+2026-03-04 06:01:15.936503 [0x00007fbe11fbf160] [Info   ] [HomeXAxis] Homing X Axis [Script] [LogWrapper.lua,51]
+2026-03-04 06:01:16.097160 [0x00007fbe11fbf160] [Info   ] [HomeXAxis] HomeNegativeHalfFlag == true [Script] [LogWrapper.lua,51]
+2026-03-04 06:01:16.187633 [0x00007fbe11fbf160] [Info   ] [Initialize] Homing complete [Script] [LogWrapper.lua,51]
+2026-03-04 06:01:16.187819 [0x00007fbe11fbf160] [Info   ] Script completion status: COMPLETE_SUCCESS [MotionSynergyAPI] [ScriptExecutor.cpp,71]
+2026-03-04 06:01:16.377571 [0x00007ffecdd0f160] [Info   ] Logging stopped. [Logger] []
